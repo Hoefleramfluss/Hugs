@@ -1,0 +1,6 @@
+timestamp: 2025-11-13T18:42:54Z
+backend_url: https://hugs-backend-prod-vqak3arhva-ey.a.run.app
+curl_exit: 0
+body_file: .deploy-info-1763042763/backend-health-after-rollback.body
+headers_file: .deploy-info-1763042763/backend-health-after-rollback.headers
+debug_file: .deploy-info-1763042763/backend-health-curl-debug.txt

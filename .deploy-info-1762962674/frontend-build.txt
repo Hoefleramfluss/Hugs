@@ -1,0 +1,56 @@
+
+> frontend@0.1.0 build
+> next build
+
+  ▲ Next.js 14.2.4
+
+   Skipping linting
+   Checking validity of types ...
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Collecting page data ...
+   Generating static pages (0/24) ...
+   Generating static pages (6/24) 
+   Generating static pages (12/24) 
+   Generating static pages (18/24) 
+ ✓ Generating static pages (24/24)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (pages)                                         Size     First Load JS
+┌ ● / (ISR: 60 Seconds) (1287 ms)                     2.44 kB         113 kB
+├   /_app                                             0 B            78.8 kB
+├ ○ /404                                              181 B            79 kB
+├ ○ /account/orders                                   772 B           107 kB
+├ ○ /admin (357 ms)                                   1.79 kB         103 kB
+├ ○ /admin/customers                                  812 B           102 kB
+├ ○ /admin/customers/[id]                             941 B           102 kB
+├ ○ /admin/dashboard (1276 ms)                        101 kB          183 kB
+├ ○ /admin/page-builder                               1.86 kB         105 kB
+├ ○ /admin/page-builder/[slug] (391 ms)               2.64 kB         106 kB
+├ ƒ /admin/products                                   2.07 kB         105 kB
+├ ○ /admin/seo (400 ms)                               1.4 kB         80.2 kB
+├ ○ /admin/settings (499 ms)                          1.14 kB         102 kB
+├ ○ /agb                                              1.06 kB         105 kB
+├ ○ /checkout/cancel                                  565 B           107 kB
+├ ○ /checkout/success (350 ms)                        684 B           107 kB
+├ ○ /dsgvo                                            1.13 kB         105 kB
+├ ○ /healthz                                          383 B          79.2 kB
+├ ○ /impressum                                        862 B           105 kB
+├ ○ /preview/[slug]                                   350 B          79.1 kB
+├ ● /product/[slug] (ISR: 60 Seconds) (4312 ms)       1.96 kB         112 kB
+├   ├ /product/fabric-grow-pots-5-pack (1375 ms)
+├   ├ /product/premium-organic-soil-mix (1284 ms)
+├   ├ /product/led-grow-light-full-spectrum (927 ms)
+├   └ /product/hydroponic-nutrient-solution (726 ms)
+└ ○ /register                                         1.83 kB         103 kB
++ First Load JS shared by all                         86.6 kB
+  ├ chunks/framework-fbacec006b17dfec.js              45.2 kB
+  ├ chunks/main-0256de52b1e88486.js                   32 kB
+  └ other shared chunks (total)                       9.38 kB
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses getStaticProps)
+   (ISR)      incremental static regeneration (uses revalidate in getStaticProps)
+ƒ  (Dynamic)  server-rendered on demand
+

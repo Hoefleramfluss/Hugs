@@ -1,0 +1,3 @@
+NAME      HOST  TYPE      PASSWORD_POLICY
+postgres        BUILT_IN
+shopuser        BUILT_IN

@@ -1,0 +1,9 @@
+ipCidrRange: 10.8.0.0/28
+machineType: e2-micro
+maxInstances: 3
+maxThroughput: 300
+minInstances: 2
+minThroughput: 200
+name: projects/hugs-headshop-20251108122937/locations/europe-west3/connectors/hugs-vpc-connector
+network: hugs-vpc
+state: READY

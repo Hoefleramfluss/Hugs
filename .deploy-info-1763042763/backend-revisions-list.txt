@@ -1,0 +1,6 @@
+REVISION                     UPDATE_TIME  SERVICE  TRAFFIC
+hugs-backend-prod-00005-4rn
+hugs-backend-prod-00004-d8n
+hugs-backend-prod-00003-5fw
+hugs-backend-prod-00002-wfl
+hugs-backend-prod-00001-8kq

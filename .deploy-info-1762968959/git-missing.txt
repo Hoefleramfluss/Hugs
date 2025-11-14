@@ -1,0 +1,1 @@
+  NOT A GIT REPO (kein .git) — falls nötig: clone Repo neu.

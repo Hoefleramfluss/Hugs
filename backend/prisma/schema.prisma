@@ -1,0 +1,151 @@
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://postgres:postgres@localhost:5432/hugs_test"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum PageStatus {
+  DRAFT
+  PUBLISHED
+}
+
+enum LocationType {
+  STORE
+  WAREHOUSE
+  ONLINE
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  password  String
+  role      String   @default("USER")
+  status    String   @default("ACTIVE")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  reviews   Review[]
+  orders    Order[]
+}
+
+model Product {
+  id            String          @id @default(cuid())
+  title         String
+  slug          String          @unique
+  description   String
+  price         Float
+  taxRate       Int             @default(20)
+  productOfWeek Boolean         @default(false)
+  featured      Boolean         @default(false)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  images        ProductImage[]
+  variants      ProductVariant[]
+  reviews       Review[]
+}
+
+model ProductImage {
+  id        String   @id @default(cuid())
+  url       String
+  altText   String?
+  priority  Int      @default(0)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ProductVariant {
+  id            String          @id @default(cuid())
+  sku           String          @unique
+  attributes    Json?
+  priceOverride Float?
+  productId     String
+  product       Product         @relation(fields: [productId], references: [id], onDelete: Cascade)
+  inventory     InventoryStock[]
+  orderItems    OrderItem[]
+}
+
+model Order {
+  id            String   @id @default(cuid())
+  orderNumber   String   @unique
+  userId        String?
+  user          User?    @relation(fields: [userId], references: [id])
+  status        String   @default("PENDING")
+  total         Float
+  currency      String   @default("EUR")
+  shippingInfo  Json?
+  billingInfo   Json?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  items         OrderItem[]
+}
+
+model OrderItem {
+  id        String         @id @default(cuid())
+  orderId   String
+  order     Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  variantId String
+  variant   ProductVariant @relation(fields: [variantId], references: [id], onDelete: Cascade)
+  quantity  Int
+  price     Float
+  title     String
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  rating    Int
+  comment   String
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
+
+model Location {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  type      LocationType
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  inventory InventoryStock[]
+}
+
+model InventoryStock {
+  id         String         @id @default(cuid())
+  variantId  String
+  variant    ProductVariant @relation(fields: [variantId], references: [id], onDelete: Cascade)
+  locationId String
+  location   Location       @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  quantity   Int            @default(0)
+  updatedAt  DateTime       @default(now())
+
+  @@unique([variantId, locationId])
+}
+
+model Page {
+  id            String     @id @default(cuid())
+  slug          String     @unique
+  title         String
+  status        PageStatus @default(DRAFT)
+  isDefaultHome Boolean    @default(false)
+  publishedAt   DateTime?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  sections      Section[]
+}
+
+model Section {
+  id        String   @id @default(cuid())
+  type      String
+  props     Json?
+  order     Int      @default(0)
+  pageId    String
+  page      Page     @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

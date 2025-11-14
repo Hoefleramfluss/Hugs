@@ -1,0 +1,6 @@
+bindings:
+- members:
+  - serviceAccount:787273457651@cloudbuild.gserviceaccount.com
+  role: roles/iam.serviceAccountUser
+etag: BwZDXRZisWk=
+version: 1

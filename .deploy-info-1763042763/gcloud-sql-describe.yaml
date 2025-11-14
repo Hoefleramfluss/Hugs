@@ -1,0 +1,50 @@
+connectionName: hugs-headshop-20251108122937:europe-west3:hugs-pg-instance-prod
+ipAddresses:
+- ipAddress: 10.180.0.3
+  type: PRIVATE
+name: hugs-pg-instance-prod
+settings:
+  activationPolicy: ALWAYS
+  availabilityType: ZONAL
+  backupConfiguration:
+    backupRetentionSettings:
+      retainedBackups: 7
+      retentionUnit: COUNT
+    backupTier: STANDARD
+    enabled: true
+    kind: sql#backupConfiguration
+    pointInTimeRecoveryEnabled: true
+    replicationLogArchivingEnabled: true
+    startTime: 02:00
+    transactionLogRetentionDays: 7
+    transactionalLogStorageState: CLOUD_STORAGE
+  connectorEnforcement: NOT_REQUIRED
+  dataDiskSizeGb: '20'
+  dataDiskType: PD_SSD
+  deletionProtectionEnabled: false
+  enableDataplexIntegration: false
+  enableGoogleMlIntegration: false
+  ipConfiguration:
+    enablePrivatePathForGoogleCloudServices: false
+    ipv4Enabled: false
+    privateNetwork: projects/hugs-headshop-20251108122937/global/networks/hugs-vpc
+    requireSsl: false
+    serverCaMode: GOOGLE_MANAGED_INTERNAL_CA
+    serverCertificateRotationMode: SERVER_CERTIFICATE_ROTATION_MODE_UNSPECIFIED
+    sslMode: ALLOW_UNENCRYPTED_AND_ENCRYPTED
+  kind: sql#settings
+  locationPreference:
+    kind: sql#locationPreference
+    zone: europe-west3-c
+  maintenanceWindow:
+    day: 7
+    hour: 0
+    kind: sql#maintenanceWindow
+    updateTrack: stable
+  pricingPlan: PER_USE
+  replicationLagMaxSeconds: 31536000
+  replicationType: SYNCHRONOUS
+  settingsVersion: '8'
+  storageAutoResize: true
+  storageAutoResizeLimit: '0'
+  tier: db-g1-small

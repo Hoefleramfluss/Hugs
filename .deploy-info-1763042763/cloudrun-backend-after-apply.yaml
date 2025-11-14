@@ -1,0 +1,21 @@
+status:
+  address:
+    url: https://hugs-backend-prod-vqak3arhva-ey.a.run.app
+  conditions:
+  - lastTransitionTime: '2025-11-12T01:45:08.128380Z'
+    status: 'True'
+    type: Ready
+  - lastTransitionTime: '2025-11-12T01:45:06.668134Z'
+    status: 'True'
+    type: ConfigurationsReady
+  - lastTransitionTime: '2025-11-12T01:45:08.095194Z'
+    status: 'True'
+    type: RoutesReady
+  latestCreatedRevisionName: hugs-backend-prod-00005-4rn
+  latestReadyRevisionName: hugs-backend-prod-00005-4rn
+  observedGeneration: 5
+  traffic:
+  - latestRevision: true
+    percent: 100
+    revisionName: hugs-backend-prod-00005-4rn
+  url: https://hugs-backend-prod-vqak3arhva-ey.a.run.app

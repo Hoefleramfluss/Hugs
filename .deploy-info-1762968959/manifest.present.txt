@@ -1,0 +1,1 @@
+  manifest-frontend-fix.json: vorhanden

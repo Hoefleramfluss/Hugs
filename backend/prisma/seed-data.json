@@ -1,0 +1,121 @@
+[
+  {
+    "title": "LED Grow Light Pro 120W",
+    "description": "Full-spectrum 120W LED grow light for all stages of plant growth. Energy efficient and low heat output.",
+    "slug": "led-grow-light-pro-120w",
+    "price": 129.99,
+    "taxRate": 20,
+    "productOfWeek": true,
+    "variants": [
+      {
+        "sku": "GLP-120",
+        "attributes": { "wattage": "120W" },
+        "stock": { "store_main": 20, "warehouse": 100 }
+      }
+    ]
+  },
+  {
+    "title": "Organic Bio-Soil Mix",
+    "description": "Nutrient-rich organic soil mix, perfect for indoor and outdoor growing. 50L bag.",
+    "slug": "organic-bio-soil-mix-50l",
+    "price": 24.90,
+    "taxRate": 10,
+    "variants": [
+      {
+        "sku": "SOIL-ORG-50L",
+        "attributes": { "volume": "50L" },
+        "stock": { "store_main": 50, "warehouse": 200 }
+      }
+    ]
+  },
+  {
+    "title": "Precision Pruning Shears",
+    "description": "High-quality stainless steel pruning shears for precise trimming and shaping.",
+    "slug": "precision-pruning-shears",
+    "price": 19.95,
+    "taxRate": 20,
+    "variants": [
+      {
+        "sku": "TOOL-SHEARS-01",
+        "attributes": { "material": "stainless steel" },
+        "stock": { "store_main": 40, "warehouse": 150 }
+      }
+    ]
+  },
+  {
+    "title": "Advanced Nutrients Set",
+    "description": "Complete nutrient set for grow and bloom phases. Includes Micro, Grow, and Bloom bottles.",
+    "slug": "advanced-nutrients-set",
+    "price": 49.50,
+    "taxRate": 10,
+    "variants": [
+      {
+        "sku": "NUTR-ADV-SET-1L",
+        "attributes": { "size": "1L bottles" },
+        "stock": { "store_main": 30, "warehouse": 80 }
+      }
+    ]
+  },
+  {
+    "title": "Silent Inline Fan",
+    "description": "Ultra-quiet inline fan for ventilation systems. Improves air circulation without the noise.",
+    "slug": "silent-inline-fan-100mm",
+    "price": 89.00,
+    "taxRate": 20,
+    "variants": [
+      {
+        "sku": "FAN-INL-S-100",
+        "attributes": { "diameter": "100mm" },
+        "stock": { "store_main": 15, "warehouse": 50 }
+      },
+      {
+        "sku": "FAN-INL-S-150",
+        "attributes": { "diameter": "150mm" },
+        "priceOverride": 109.00,
+        "stock": { "store_main": 10, "warehouse": 40 }
+      }
+    ]
+  },
+  {
+    "title": "Digital Timer Switch",
+    "description": "Programmable digital timer for controlling lights and fans. 24/7 settings.",
+    "slug": "digital-timer-switch",
+    "price": 14.99,
+    "taxRate": 20,
+    "variants": [
+      {
+        "sku": "ELEC-TIMER-D-01",
+        "attributes": { "type": "digital" },
+        "stock": { "store_main": 60, "warehouse": 300 }
+      }
+    ]
+  },
+  {
+    "title": "Organic Fertilizer Set",
+    "description": "A complete set of organic fertilizers for healthy plant growth from start to finish.",
+    "slug": "organic-fertilizer-set",
+    "price": 39.90,
+    "taxRate": 10,
+    "variants": [
+      {
+        "sku": "FERT-ORG-SET-S",
+        "attributes": { "size": "Small" },
+        "stock": { "store_main": 25, "warehouse": 75 }
+      }
+    ]
+  },
+  {
+    "title": "Digital pH Test Kit",
+    "description": "Accurate digital pH meter for testing water and nutrient solutions.",
+    "slug": "digital-ph-test-kit",
+    "price": 29.99,
+    "taxRate": 20,
+    "variants": [
+      {
+        "sku": "TEST-PH-KIT-D-01",
+        "attributes": { "type": "digital meter" },
+        "stock": { "store_main": 35, "warehouse": 120 }
+      }
+    ]
+  }
+]

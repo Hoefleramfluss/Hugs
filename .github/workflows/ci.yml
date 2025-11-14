@@ -1,0 +1,44 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: Install Monorepo Dependencies
+      run: npm install -ws
+
+    - name: Build Backend
+      run: npm run build --workspace=backend
+      env:
+        DATABASE_URL: ${{ secrets.DATABASE_URL_DUMMY }} # Needed for prisma generate at build time
+
+    - name: Build Frontend
+      run: npm run build --workspace=frontend
+      env:
+        NEXT_PUBLIC_API_URL: http://localhost:4000
+
+    - name: Test Backend
+      run: npm test --workspace=backend
+      env:
+        DATABASE_URL: ${{ secrets.DATABASE_URL_DUMMY }}
+        JWT_SECRET: test-secret

@@ -1,0 +1,9 @@
+# 1) Frontend URL ermitteln:
+FRONTEND_URL=$(gcloud run services describe hugs-frontend-prod --region=europe-west3 --project=hugs-headshop-20251108122937 --format='value(status.url)')
+
+# 2) Health checks:
+curl -sf "${FRONTEND_URL}/healthz" || echo "Frontend health failed"
+curl -sf "${BACKEND_DEFAULT_URL}/api/healthz" || echo "Backend health failed"
+
+# 3) Run Playwright smoke:
+PW_BASE_URL="${FRONTEND_URL}" npx playwright test frontend/e2e/admin-login.spec.ts --project=chromium --reporter=list

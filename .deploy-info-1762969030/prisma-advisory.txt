@@ -1,0 +1,11 @@
+# 1) Backup erstellen:
+gcloud sql backups create --instance=hugs-pg-instance-prod --project=hugs-headshop-20251108122937
+
+# 2) Warte bis Backup fertig (prüfe status)
+gcloud sql operations list --instance=hugs-pg-instance-prod --project=hugs-headshop-20251108122937
+
+# 3) Deployment (manuell/mit CONFIRM_FLAG):
+# CONFIRM_PRISMA_DEPLOY=true npx prisma migrate deploy
+
+# 4) Seeding (nur wenn bestätigt):
+# CONFIRM_PROD_SEED=true npm run db:seed

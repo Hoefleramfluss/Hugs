@@ -1,0 +1,26 @@
+{
+  "changes": [
+    {"file": "frontend/constants.ts", "description": "Centralize API configuration defaults, timeouts, and meta constants."},
+    {"file": "frontend/lib/apiSafeFetch.ts", "description": "Add safe product fetch helper with timeout and fallback logic."},
+    {"file": "frontend/lib/staticProductData.ts", "description": "Expose fallback data utilities using safe fetch helper."},
+    {"file": "frontend/data/fallback-products.json", "description": "Provide static fallback product dataset for SSG."},
+    {"file": "frontend/pages/index.tsx", "description": "Use safe data, improve SEO metadata, and ensure resilient SSG."},
+    {"file": "frontend/pages/product/[slug].tsx", "description": "Leverage safe product fetch fallback and enrich SEO tags."},
+    {"file": "frontend/pages/healthz.tsx", "description": "Expose simple health check endpoint for probes."},
+    {"file": "frontend/pages/_document.tsx", "description": "Add default meta tags and font preconnects."},
+    {"file": "frontend/components/ProductCard.tsx", "description": "Switch to next/image and update quick add behavior."},
+    {"file": "frontend/components/PDWHero.tsx", "description": "Optimize hero with next/image and Next.js Link."},
+    {"file": "frontend/services/api.ts", "description": "Share API timeout configuration."},
+    {"file": "frontend/services/pageBuilderApi.ts", "description": "Apply centralized API timeout config."},
+    {"file": "frontend/services/checkout.ts", "description": "Apply API timeout to checkout client."},
+    {"file": "frontend/next.config.js", "description": "Enable standalone output, security headers, and image settings."},
+    {"file": "frontend/Dockerfile", "description": "Build Next standalone image with build args for API URL."},
+    {"file": "frontend/e2e/admin-login.spec.ts", "description": "Add Playwright smoke test using fallback data."},
+    {"file": "frontend/LIGHTHOUSE_TIPS.md", "description": "Document performance and Lighthouse recommendations."},
+    {"file": "ci/cloudbuild.yaml", "description": "Inject API build arg, add smoke tests, and support frontend-only deploys."},
+    {"file": "ci/check_frontend_build.sh", "description": "Scripted frontend build with API env for CI."},
+    {"file": "ci/run_frontend_local.sh", "description": "Developer helper to run frontend with API URL."},
+    {"file": "ci/deploy_frontend_prod.sh", "description": "Wrapper for frontend-targeted Cloud Build submissions."},
+    {"file": "playwright.config.ts", "description": "Configure base URL/env and workspace dev server for tests."}
+  ]
+}

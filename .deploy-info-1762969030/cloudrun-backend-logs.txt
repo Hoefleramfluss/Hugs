@@ -1,0 +1,196 @@
+2025-11-12 15:57:39 GET 200 https://hugs-backend-prod-787273457651.europe-west3.run.app/api/products
+2025-11-12 15:57:39 GET 200 https://hugs-backend-prod-787273457651.europe-west3.run.app/api/products
+2025-11-12 15:57:40 [15:57:39 UTC] INFO: incoming request
+2025-11-12 15:57:40     reqId: "req-f"
+2025-11-12 15:57:40     req: {
+2025-11-12 15:57:40       "method": "GET",
+2025-11-12 15:57:40       "url": "/api/products",
+2025-11-12 15:57:40       "hostname": "hugs-backend-prod-787273457651.europe-west3.run.app",
+2025-11-12 15:57:40       "remoteAddress": "169.254.169.126",
+2025-11-12 15:57:40       "remotePort": 3622
+2025-11-12 15:57:40     }
+2025-11-12 15:57:41 [15:57:39 UTC] INFO: incoming request
+2025-11-12 15:57:41     reqId: "req-g"
+2025-11-12 15:57:41     req: {
+2025-11-12 15:57:41       "method": "GET",
+2025-11-12 15:57:41       "url": "/api/products",
+2025-11-12 15:57:41       "hostname": "hugs-backend-prod-787273457651.europe-west3.run.app",
+2025-11-12 15:57:41       "remoteAddress": "169.254.169.126",
+2025-11-12 15:57:41       "remotePort": 3638
+2025-11-12 15:57:41     }
+2025-11-12 15:57:41 [15:57:39 UTC] INFO: incoming request
+2025-11-12 15:57:41     reqId: "req-h"
+2025-11-12 15:57:41     req: {
+2025-11-12 15:57:41       "method": "GET",
+2025-11-12 15:57:41       "url": "/api/products",
+2025-11-12 15:57:41       "hostname": "hugs-backend-prod-787273457651.europe-west3.run.app",
+2025-11-12 15:57:41       "remoteAddress": "169.254.169.126",
+2025-11-12 15:57:41       "remotePort": 3644
+2025-11-12 15:57:41     }
+2025-11-12 15:57:41 [15:57:39 UTC] INFO: incoming request
+2025-11-12 15:57:41     reqId: "req-i"
+2025-11-12 15:57:41     req: {
+2025-11-12 15:57:41       "method": "GET",
+2025-11-12 15:57:41       "url": "/api/products",
+2025-11-12 15:57:41       "hostname": "hugs-backend-prod-787273457651.europe-west3.run.app",
+2025-11-12 15:57:41       "remoteAddress": "169.254.169.126",
+2025-11-12 15:57:41       "remotePort": 3652
+2025-11-12 15:57:41     }
+2025-11-12 15:57:41 [15:57:39 UTC] INFO: request completed
+2025-11-12 15:57:41     reqId: "req-f"
+2025-11-12 15:57:41     res: {
+2025-11-12 15:57:41       "statusCode": 200
+2025-11-12 15:57:41     }
+2025-11-12 15:57:41     responseTime: 26.363215999968816
+2025-11-12 15:57:41 [15:57:39 UTC] INFO: request completed
+2025-11-12 15:57:41     reqId: "req-g"
+2025-11-12 15:57:41     res: {
+2025-11-12 15:57:41       "statusCode": 200
+2025-11-12 15:57:41     }
+2025-11-12 15:57:41     responseTime: 87.72488100000191
+2025-11-12 15:57:41 [15:57:39 UTC] INFO: request completed
+2025-11-12 15:57:41     reqId: "req-h"
+2025-11-12 15:57:41     res: {
+2025-11-12 15:57:41       "statusCode": 200
+2025-11-12 15:57:41     }
+2025-11-12 15:57:41     responseTime: 88.74690000002738
+2025-11-12 15:57:41 [15:57:39 UTC] INFO: request completed
+2025-11-12 15:57:41     reqId: "req-i"
+2025-11-12 15:57:41     res: {
+2025-11-12 15:57:41       "statusCode": 200
+2025-11-12 15:57:41     }
+2025-11-12 15:57:41     responseTime: 79.07296299998416
+2025-11-12 16:51:12 GET 404 https://hugs-backend-prod-787273457651.europe-west3.run.app/api/healthz
+2025-11-12 16:51:15 Server listening at http://0.0.0.0:8080
+2025-11-12 16:51:15 [16:51:15 UTC] INFO: Server listening at http://0.0.0.0:8080
+2025-11-12 16:51:15 [16:51:15 UTC] INFO: incoming request
+2025-11-12 16:51:15     reqId: "req-1"
+2025-11-12 16:51:15     req: {
+2025-11-12 16:51:15       "method": "GET",
+2025-11-12 16:51:15       "url": "/api/healthz",
+2025-11-12 16:51:15       "hostname": "hugs-backend-prod-787273457651.europe-west3.run.app",
+2025-11-12 16:51:15       "remoteAddress": "169.254.169.126",
+2025-11-12 16:51:15       "remotePort": 8132
+2025-11-12 16:51:15     }
+2025-11-12 16:51:15 [16:51:15 UTC] INFO: Route GET:/api/healthz not found
+2025-11-12 16:51:15     reqId: "req-1"
+2025-11-12 16:51:15 [16:51:15 UTC] INFO: request completed
+2025-11-12 16:51:15     reqId: "req-1"
+2025-11-12 16:51:15     res: {
+2025-11-12 16:51:15       "statusCode": 404
+2025-11-12 16:51:15     }
+2025-11-12 16:51:15     responseTime: 28.552627999999913
+2025-11-12 16:51:42 GET 200 https://hugs-backend-prod-787273457651.europe-west3.run.app/api/products
+2025-11-12 16:51:42 GET 200 https://hugs-backend-prod-787273457651.europe-west3.run.app/api/products
+2025-11-12 16:51:42 GET 200 https://hugs-backend-prod-787273457651.europe-west3.run.app/api/products
+2025-11-12 16:51:42 GET 200 https://hugs-backend-prod-787273457651.europe-west3.run.app/api/products
+2025-11-12 16:51:42 [16:51:42 UTC] INFO: incoming request
+2025-11-12 16:51:42     reqId: "req-2"
+2025-11-12 16:51:42     req: {
+2025-11-12 16:51:42       "method": "GET",
+2025-11-12 16:51:42       "url": "/api/products",
+2025-11-12 16:51:42       "hostname": "hugs-backend-prod-787273457651.europe-west3.run.app",
+2025-11-12 16:51:42       "remoteAddress": "169.254.169.126",
+2025-11-12 16:51:42       "remotePort": 64050
+2025-11-12 16:51:42     }
+2025-11-12 16:51:42 GET 200 https://hugs-backend-prod-787273457651.europe-west3.run.app/api/products
+2025-11-12 16:51:42 [16:51:42 UTC] INFO: request completed
+2025-11-12 16:51:42     reqId: "req-2"
+2025-11-12 16:51:42     res: {
+2025-11-12 16:51:42       "statusCode": 200
+2025-11-12 16:51:42     }
+2025-11-12 16:51:42     responseTime: 36.34382199999891
+2025-11-12 16:51:42 [16:51:42 UTC] INFO: incoming request
+2025-11-12 16:51:42     reqId: "req-3"
+2025-11-12 16:51:42     req: {
+2025-11-12 16:51:42       "method": "GET",
+2025-11-12 16:51:42       "url": "/api/products",
+2025-11-12 16:51:42       "hostname": "hugs-backend-prod-787273457651.europe-west3.run.app",
+2025-11-12 16:51:42       "remoteAddress": "169.254.169.126",
+2025-11-12 16:51:42       "remotePort": 64064
+2025-11-12 16:51:42     }
+2025-11-12 16:51:42 [16:51:42 UTC] INFO: request completed
+2025-11-12 16:51:42     reqId: "req-3"
+2025-11-12 16:51:42     res: {
+2025-11-12 16:51:42       "statusCode": 200
+2025-11-12 16:51:42     }
+2025-11-12 16:51:42     responseTime: 9.547145000000455
+2025-11-12 16:51:42 [16:51:42 UTC] INFO: incoming request
+2025-11-12 16:51:42     reqId: "req-4"
+2025-11-12 16:51:42     req: {
+2025-11-12 16:51:42       "method": "GET",
+2025-11-12 16:51:42       "url": "/api/products",
+2025-11-12 16:51:42       "hostname": "hugs-backend-prod-787273457651.europe-west3.run.app",
+2025-11-12 16:51:42       "remoteAddress": "169.254.169.126",
+2025-11-12 16:51:42       "remotePort": 64080
+2025-11-12 16:51:42     }
+2025-11-12 16:51:42 [16:51:42 UTC] INFO: incoming request
+2025-11-12 16:51:42     reqId: "req-5"
+2025-11-12 16:51:42     req: {
+2025-11-12 16:51:42       "method": "GET",
+2025-11-12 16:51:42       "url": "/api/products",
+2025-11-12 16:51:42       "hostname": "hugs-backend-prod-787273457651.europe-west3.run.app",
+2025-11-12 16:51:42       "remoteAddress": "169.254.169.126",
+2025-11-12 16:51:42       "remotePort": 64084
+2025-11-12 16:51:42     }
+2025-11-12 16:51:42 GET 200 https://hugs-backend-prod-787273457651.europe-west3.run.app/api/products
+2025-11-12 16:51:42 [16:51:42 UTC] INFO: incoming request
+2025-11-12 16:51:42     reqId: "req-6"
+2025-11-12 16:51:42     req: {
+2025-11-12 16:51:42       "method": "GET",
+2025-11-12 16:51:42       "url": "/api/products",
+2025-11-12 16:51:42       "hostname": "hugs-backend-prod-787273457651.europe-west3.run.app",
+2025-11-12 16:51:42       "remoteAddress": "169.254.169.126",
+2025-11-12 16:51:42       "remotePort": 64094
+2025-11-12 16:51:42     }
+2025-11-12 16:51:42 GET 200 https://hugs-backend-prod-787273457651.europe-west3.run.app/api/products
+2025-11-12 16:51:43 [16:51:42 UTC] INFO: incoming request
+2025-11-12 16:51:43     reqId: "req-7"
+2025-11-12 16:51:43     req: {
+2025-11-12 16:51:43       "method": "GET",
+2025-11-12 16:51:43       "url": "/api/products",
+2025-11-12 16:51:43       "hostname": "hugs-backend-prod-787273457651.europe-west3.run.app",
+2025-11-12 16:51:43       "remoteAddress": "169.254.169.126",
+2025-11-12 16:51:43       "remotePort": 64098
+2025-11-12 16:51:43     }
+2025-11-12 16:51:43 [16:51:43 UTC] INFO: request completed
+2025-11-12 16:51:43     reqId: "req-4"
+2025-11-12 16:51:43     res: {
+2025-11-12 16:51:43       "statusCode": 200
+2025-11-12 16:51:43     }
+2025-11-12 16:51:43     responseTime: 18.691619000001083
+2025-11-12 16:51:43 [16:51:43 UTC] INFO: incoming request
+2025-11-12 16:51:43     reqId: "req-8"
+2025-11-12 16:51:43     req: {
+2025-11-12 16:51:43       "method": "GET",
+2025-11-12 16:51:43       "url": "/api/products",
+2025-11-12 16:51:43       "hostname": "hugs-backend-prod-787273457651.europe-west3.run.app",
+2025-11-12 16:51:43       "remoteAddress": "169.254.169.126",
+2025-11-12 16:51:43       "remotePort": 64102
+2025-11-12 16:51:43     }
+2025-11-12 16:51:43 [16:51:43 UTC] INFO: request completed
+2025-11-12 16:51:43     reqId: "req-7"
+2025-11-12 16:51:43     res: {
+2025-11-12 16:51:43       "statusCode": 200
+2025-11-12 16:51:43     }
+2025-11-12 16:51:43     responseTime: 17.53799599999911
+2025-11-12 16:51:43 [16:51:43 UTC] INFO: request completed
+2025-11-12 16:51:43     reqId: "req-6"
+2025-11-12 16:51:43     res: {
+2025-11-12 16:51:43       "statusCode": 200
+2025-11-12 16:51:43     }
+2025-11-12 16:51:43     responseTime: 65.31860299999971
+2025-11-12 16:51:43 [16:51:43 UTC] INFO: request completed
+2025-11-12 16:51:43     reqId: "req-5"
+2025-11-12 16:51:43     res: {
+2025-11-12 16:51:43       "statusCode": 200
+2025-11-12 16:51:43     }
+2025-11-12 16:51:43     responseTime: 73.6073260000012
+2025-11-12 16:51:43 [16:51:43 UTC] INFO: request completed
+2025-11-12 16:51:43     reqId: "req-8"
+2025-11-12 16:51:43     res: {
+2025-11-12 16:51:43       "statusCode": 200
+2025-11-12 16:51:43     }
+2025-11-12 16:51:43     responseTime: 57.92678199999864
+2025-11-12 17:37:27 GET 404 https://hugs-backend-prod-787273457651.europe-west3.run.app/api/healthz
+2025-11-12 17:37:30 Server listening at http://0.0.0.0:8080

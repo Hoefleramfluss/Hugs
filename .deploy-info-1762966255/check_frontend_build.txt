@@ -1,0 +1,732 @@
+[check_frontend_build] Using NEXT_PUBLIC_API_URL=https://hugs-backend-prod-787273457651.europe-west3.run.app
+
+up to date in 1s
+
+> frontend@0.1.0 build
+> next build
+
+  ▲ Next.js 14.2.4
+
+   Skipping linting
+   Checking validity of types ...
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Collecting page data ...
+Falling back to static product data due to fetch error: <ref *1> CanceledError: canceled
+    at EventTarget.abort (file:///Users/christophermarik/Documents/Hugs_CRM/node_modules/axios/lib/adapters/http.js:354:61)
+    at [nodejs.internal.kHybridDispatch] (node:internal/event_target:831:20)
+    at EventTarget.dispatchEvent (node:internal/event_target:766:26)
+    at abortSignal (node:internal/abort_controller:370:10)
+    at Timeout._onTimeout (node:internal/abort_controller:127:7)
+    at listOnTimeout (node:internal/timers:581:17)
+    at process.processTimers (node:internal/timers:519:7)
+    at Axios.request (file:///Users/christophermarik/Documents/Hugs_CRM/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async o (/Users/christophermarik/Documents/Hugs_CRM/frontend/.next/server/pages/product/[slug].js:1:3526)
+    at async n (/Users/christophermarik/Documents/Hugs_CRM/frontend/.next/server/pages/product/[slug].js:1:4053)
+    at async f (/Users/christophermarik/Documents/Hugs_CRM/frontend/.next/server/pages/product/[slug].js:1:4456)
+    at async buildStaticPaths (/Users/christophermarik/Documents/Hugs_CRM/node_modules/next/dist/build/utils.js:788:33)
+    at async /Users/christophermarik/Documents/Hugs_CRM/node_modules/next/dist/build/utils.js:1220:110
+    at async Span.traceAsyncFn (/Users/christophermarik/Documents/Hugs_CRM/node_modules/next/dist/trace/trace.js:154:20) {
+  code: 'ERR_CANCELED',
+  config: {
+    transitional: {
+      silentJSONParsing: true,
+      forcedJSONParsing: true,
+      clarifyTimeoutError: false
+    },
+    adapter: [ 'xhr', 'http', 'fetch' ],
+    transformRequest: [ [Function: transformRequest] ],
+    transformResponse: [ [Function: transformResponse] ],
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    maxBodyLength: -1,
+    env: { FormData: [Function [FormData]], Blob: [class Blob] },
+    validateStatus: [Function: validateStatus],
+    headers: Object [AxiosHeaders] {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': undefined,
+      'User-Agent': 'axios/1.13.2',
+      'Accept-Encoding': 'gzip, compress, deflate, br'
+    },
+    signal: AbortSignal { aborted: true },
+    method: 'get',
+    url: 'https://hugs-backend-prod-787273457651.europe-west3.run.app/api/products',
+    allowAbsoluteUrls: true,
+    data: undefined
+  },
+  request: <ref *2> Writable {
+    _events: {
+      close: undefined,
+      error: [Function: handleRequestError],
+      prefinish: undefined,
+      finish: undefined,
+      drain: undefined,
+      response: [Function: handleResponse],
+      socket: [Array],
+      abort: undefined
+    },
+    _writableState: WritableState {
+      highWaterMark: 16384,
+      length: 0,
+      corked: 0,
+      onwrite: [Function: bound onwrite],
+      writelen: 0,
+      bufferedIndex: 0,
+      pendingcb: 0,
+      [Symbol(kState)]: 17581054,
+      [Symbol(kBufferedValue)]: null,
+      [Symbol(kErroredValue)]: [Circular *1]
+    },
+    _maxListeners: undefined,
+    _options: {
+      maxRedirects: 21,
+      maxBodyLength: Infinity,
+      protocol: 'https:',
+      path: '/api/products',
+      method: 'GET',
+      headers: [Object: null prototype],
+      agents: [Object],
+      auth: undefined,
+      family: undefined,
+      beforeRedirect: [Function: dispatchBeforeRedirect],
+      beforeRedirects: [Object],
+      http2Options: undefined,
+      hostname: 'hugs-backend-prod-787273457651.europe-west3.run.app',
+      port: '',
+      agent: undefined,
+      nativeProtocols: [Object],
+      pathname: '/api/products'
+    },
+    _ended: true,
+    _ending: true,
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 0,
+    _requestBodyBuffers: [],
+    _eventsCount: 3,
+    _onNativeResponse: [Function (anonymous)],
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      destroyed: true,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: true,
+      maxRequestsOnConnectionReached: false,
+      _defaultKeepAlive: true,
+      useChunkedEncodingByDefault: false,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      strictContentLength: false,
+      _contentLength: 0,
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      _closed: false,
+      socket: [TLSSocket],
+      _header: 'GET /api/products HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'User-Agent: axios/1.13.2\r\n' +
+        'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+        'Host: hugs-backend-prod-787273457651.europe-west3.run.app\r\n' +
+        'Connection: keep-alive\r\n' +
+        '\r\n',
+      _keepAliveTimeout: 0,
+      _onPendingData: [Function: nop],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'GET',
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      joinDuplicateHeaders: undefined,
+      path: '/api/products',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: [Function: emitRequestTimeout],
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      reusedSocket: false,
+      host: 'hugs-backend-prod-787273457651.europe-west3.run.app',
+      protocol: 'https:',
+      _redirectable: [Circular *2],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(corked)]: 0,
+      [Symbol(kOutHeaders)]: [Object: null prototype],
+      [Symbol(errored)]: null,
+      [Symbol(kHighWaterMark)]: 16384,
+      [Symbol(kRejectNonStandardBodyWrites)]: false,
+      [Symbol(kUniqueHeaders)]: null,
+      [Symbol(kError)]: [Circular *1]
+    },
+    _currentUrl: 'https://hugs-backend-prod-787273457651.europe-west3.run.app/api/products',
+    _timeout: null,
+    [Symbol(shapeMode)]: true,
+    [Symbol(kCapture)]: false
+  }
+}
+   Generating static pages (0/23) ...
+   Generating static pages (5/23) 
+   Generating static pages (11/23) 
+   Generating static pages (17/23) 
+Falling back to static product data due to fetch error: <ref *1> CanceledError: canceled
+    at EventTarget.abort (file:///Users/christophermarik/Documents/Hugs_CRM/node_modules/axios/lib/adapters/http.js:354:61)
+    at [nodejs.internal.kHybridDispatch] (node:internal/event_target:831:20)
+    at EventTarget.dispatchEvent (node:internal/event_target:766:26)
+    at abortSignal (node:internal/abort_controller:370:10)
+    at Timeout._onTimeout (node:internal/abort_controller:127:7)
+    at listOnTimeout (node:internal/timers:581:17)
+    at process.processTimers (node:internal/timers:519:7)
+    at Axios.request (file:///Users/christophermarik/Documents/Hugs_CRM/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async o (/Users/christophermarik/Documents/Hugs_CRM/frontend/.next/server/pages/index.js:1:5814)
+    at async n (/Users/christophermarik/Documents/Hugs_CRM/frontend/.next/server/pages/index.js:1:6341)
+    at async h (/Users/christophermarik/Documents/Hugs_CRM/frontend/.next/server/pages/index.js:1:6693)
+    at async e3 (/Users/christophermarik/Documents/Hugs_CRM/node_modules/next/dist/compiled/next-server/pages.runtime.prod.js:25:3907)
+    at async exportPages (/Users/christophermarik/Documents/Hugs_CRM/node_modules/next/dist/export/routes/pages.js:84:28)
+    at async exportPageImpl (/Users/christophermarik/Documents/Hugs_CRM/node_modules/next/dist/export/worker.js:205:16)
+    at async Span.traceAsyncFn (/Users/christophermarik/Documents/Hugs_CRM/node_modules/next/dist/trace/trace.js:154:20)
+    at async Object.exportPage (/Users/christophermarik/Documents/Hugs_CRM/node_modules/next/dist/export/worker.js:236:20) {
+  code: 'ERR_CANCELED',
+  config: {
+    transitional: {
+      silentJSONParsing: true,
+      forcedJSONParsing: true,
+      clarifyTimeoutError: false
+    },
+    adapter: [ 'xhr', 'http', 'fetch' ],
+    transformRequest: [ [Function: transformRequest] ],
+    transformResponse: [ [Function: transformResponse] ],
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    maxBodyLength: -1,
+    env: { FormData: [Function [FormData]], Blob: [class Blob] },
+    validateStatus: [Function: validateStatus],
+    headers: Object [AxiosHeaders] {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': undefined,
+      'User-Agent': 'axios/1.13.2',
+      'Accept-Encoding': 'gzip, compress, deflate, br'
+    },
+    signal: AbortSignal { aborted: true },
+    method: 'get',
+    url: 'https://hugs-backend-prod-787273457651.europe-west3.run.app/api/products',
+    allowAbsoluteUrls: true,
+    data: undefined
+  },
+  request: <ref *2> Writable {
+    _events: {
+      close: undefined,
+      error: [Function: handleRequestError],
+      prefinish: undefined,
+      finish: undefined,
+      drain: undefined,
+      response: [Function: handleResponse],
+      socket: [Array],
+      abort: undefined
+    },
+    _writableState: WritableState {
+      highWaterMark: 16384,
+      length: 0,
+      corked: 0,
+      onwrite: [Function: bound onwrite],
+      writelen: 0,
+      bufferedIndex: 0,
+      pendingcb: 0,
+      [Symbol(kState)]: 17581054,
+      [Symbol(kBufferedValue)]: null,
+      [Symbol(kErroredValue)]: [Circular *1]
+    },
+    _maxListeners: undefined,
+    _options: {
+      maxRedirects: 21,
+      maxBodyLength: Infinity,
+      protocol: 'https:',
+      path: '/api/products',
+      method: 'GET',
+      headers: [Object: null prototype],
+      agents: [Object],
+      auth: undefined,
+      family: undefined,
+      beforeRedirect: [Function: dispatchBeforeRedirect],
+      beforeRedirects: [Object],
+      http2Options: undefined,
+      hostname: 'hugs-backend-prod-787273457651.europe-west3.run.app',
+      port: '',
+      agent: undefined,
+      nativeProtocols: [Object],
+      pathname: '/api/products'
+    },
+    _ended: true,
+    _ending: true,
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 0,
+    _requestBodyBuffers: [],
+    _eventsCount: 3,
+    _onNativeResponse: [Function (anonymous)],
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      destroyed: true,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: true,
+      maxRequestsOnConnectionReached: false,
+      _defaultKeepAlive: true,
+      useChunkedEncodingByDefault: false,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      strictContentLength: false,
+      _contentLength: 0,
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      _closed: false,
+      socket: [TLSSocket],
+      _header: 'GET /api/products HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'User-Agent: axios/1.13.2\r\n' +
+        'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+        'Host: hugs-backend-prod-787273457651.europe-west3.run.app\r\n' +
+        'Connection: keep-alive\r\n' +
+        '\r\n',
+      _keepAliveTimeout: 0,
+      _onPendingData: [Function: nop],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'GET',
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      joinDuplicateHeaders: undefined,
+      path: '/api/products',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: [Function: emitRequestTimeout],
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      reusedSocket: false,
+      host: 'hugs-backend-prod-787273457651.europe-west3.run.app',
+      protocol: 'https:',
+      _redirectable: [Circular *2],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(corked)]: 0,
+      [Symbol(kOutHeaders)]: [Object: null prototype],
+      [Symbol(errored)]: null,
+      [Symbol(kHighWaterMark)]: 16384,
+      [Symbol(kRejectNonStandardBodyWrites)]: false,
+      [Symbol(kUniqueHeaders)]: null,
+      [Symbol(kError)]: [Circular *1]
+    },
+    _currentUrl: 'https://hugs-backend-prod-787273457651.europe-west3.run.app/api/products',
+    _timeout: null,
+    [Symbol(shapeMode)]: true,
+    [Symbol(kCapture)]: false
+  }
+}
+Falling back to static product data due to fetch error: <ref *1> CanceledError: canceled
+    at EventTarget.abort (file:///Users/christophermarik/Documents/Hugs_CRM/node_modules/axios/lib/adapters/http.js:354:61)
+    at [nodejs.internal.kHybridDispatch] (node:internal/event_target:831:20)
+    at EventTarget.dispatchEvent (node:internal/event_target:766:26)
+    at abortSignal (node:internal/abort_controller:370:10)
+    at Timeout._onTimeout (node:internal/abort_controller:127:7)
+    at listOnTimeout (node:internal/timers:581:17)
+    at process.processTimers (node:internal/timers:519:7)
+    at Axios.request (file:///Users/christophermarik/Documents/Hugs_CRM/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async o (/Users/christophermarik/Documents/Hugs_CRM/frontend/.next/server/pages/index.js:1:5814)
+    at async c (/Users/christophermarik/Documents/Hugs_CRM/frontend/.next/server/pages/index.js:1:6105)
+    at async o (/Users/christophermarik/Documents/Hugs_CRM/frontend/.next/server/pages/index.js:1:6407)
+    at async Promise.all (index 0)
+    at async b (/Users/christophermarik/Documents/Hugs_CRM/frontend/.next/server/pages/product/[slug].js:1:4571)
+    at async e3 (/Users/christophermarik/Documents/Hugs_CRM/node_modules/next/dist/compiled/next-server/pages.runtime.prod.js:25:3907)
+    at async exportPages (/Users/christophermarik/Documents/Hugs_CRM/node_modules/next/dist/export/routes/pages.js:84:28)
+    at async exportPageImpl (/Users/christophermarik/Documents/Hugs_CRM/node_modules/next/dist/export/worker.js:205:16) {
+  code: 'ERR_CANCELED',
+  config: {
+    transitional: {
+      silentJSONParsing: true,
+      forcedJSONParsing: true,
+      clarifyTimeoutError: false
+    },
+    adapter: [ 'xhr', 'http', 'fetch' ],
+    transformRequest: [ [Function: transformRequest] ],
+    transformResponse: [ [Function: transformResponse] ],
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    maxBodyLength: -1,
+    env: { FormData: [Function [FormData]], Blob: [class Blob] },
+    validateStatus: [Function: validateStatus],
+    headers: Object [AxiosHeaders] {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': undefined,
+      'User-Agent': 'axios/1.13.2',
+      'Accept-Encoding': 'gzip, compress, deflate, br'
+    },
+    signal: AbortSignal { aborted: true },
+    method: 'get',
+    url: 'https://hugs-backend-prod-787273457651.europe-west3.run.app/api/products',
+    allowAbsoluteUrls: true,
+    data: undefined
+  },
+  request: <ref *2> Writable {
+    _events: {
+      close: undefined,
+      error: [Function: handleRequestError],
+      prefinish: undefined,
+      finish: undefined,
+      drain: undefined,
+      response: [Function: handleResponse],
+      socket: [Array],
+      abort: undefined
+    },
+    _writableState: WritableState {
+      highWaterMark: 16384,
+      length: 0,
+      corked: 0,
+      onwrite: [Function: bound onwrite],
+      writelen: 0,
+      bufferedIndex: 0,
+      pendingcb: 0,
+      [Symbol(kState)]: 17581054,
+      [Symbol(kBufferedValue)]: null,
+      [Symbol(kErroredValue)]: [Circular *1]
+    },
+    _maxListeners: undefined,
+    _options: {
+      maxRedirects: 21,
+      maxBodyLength: Infinity,
+      protocol: 'https:',
+      path: '/api/products',
+      method: 'GET',
+      headers: [Object: null prototype],
+      agents: [Object],
+      auth: undefined,
+      family: undefined,
+      beforeRedirect: [Function: dispatchBeforeRedirect],
+      beforeRedirects: [Object],
+      http2Options: undefined,
+      hostname: 'hugs-backend-prod-787273457651.europe-west3.run.app',
+      port: '',
+      agent: undefined,
+      nativeProtocols: [Object],
+      pathname: '/api/products'
+    },
+    _ended: true,
+    _ending: true,
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 0,
+    _requestBodyBuffers: [],
+    _eventsCount: 3,
+    _onNativeResponse: [Function (anonymous)],
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      destroyed: true,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: true,
+      maxRequestsOnConnectionReached: false,
+      _defaultKeepAlive: true,
+      useChunkedEncodingByDefault: false,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      strictContentLength: false,
+      _contentLength: 0,
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      _closed: false,
+      socket: [TLSSocket],
+      _header: 'GET /api/products HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'User-Agent: axios/1.13.2\r\n' +
+        'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+        'Host: hugs-backend-prod-787273457651.europe-west3.run.app\r\n' +
+        'Connection: keep-alive\r\n' +
+        '\r\n',
+      _keepAliveTimeout: 0,
+      _onPendingData: [Function: nop],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'GET',
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      joinDuplicateHeaders: undefined,
+      path: '/api/products',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: [Function: emitRequestTimeout],
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      reusedSocket: false,
+      host: 'hugs-backend-prod-787273457651.europe-west3.run.app',
+      protocol: 'https:',
+      _redirectable: [Circular *2],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(corked)]: 0,
+      [Symbol(kOutHeaders)]: [Object: null prototype],
+      [Symbol(errored)]: null,
+      [Symbol(kHighWaterMark)]: 16384,
+      [Symbol(kRejectNonStandardBodyWrites)]: false,
+      [Symbol(kUniqueHeaders)]: null,
+      [Symbol(kError)]: [Circular *1]
+    },
+    _currentUrl: 'https://hugs-backend-prod-787273457651.europe-west3.run.app/api/products',
+    _timeout: null,
+    [Symbol(shapeMode)]: true,
+    [Symbol(kCapture)]: false
+  }
+}
+Falling back to static product data due to fetch error: <ref *1> CanceledError: canceled
+    at EventTarget.abort (file:///Users/christophermarik/Documents/Hugs_CRM/node_modules/axios/lib/adapters/http.js:354:61)
+    at [nodejs.internal.kHybridDispatch] (node:internal/event_target:831:20)
+    at EventTarget.dispatchEvent (node:internal/event_target:766:26)
+    at abortSignal (node:internal/abort_controller:370:10)
+    at Timeout._onTimeout (node:internal/abort_controller:127:7)
+    at listOnTimeout (node:internal/timers:581:17)
+    at process.processTimers (node:internal/timers:519:7)
+    at Axios.request (file:///Users/christophermarik/Documents/Hugs_CRM/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async o (/Users/christophermarik/Documents/Hugs_CRM/frontend/.next/server/pages/product/[slug].js:1:3526)
+    at async c (/Users/christophermarik/Documents/Hugs_CRM/frontend/.next/server/pages/product/[slug].js:1:3817)
+    at async o (/Users/christophermarik/Documents/Hugs_CRM/frontend/.next/server/pages/product/[slug].js:1:4119)
+    at async Promise.all (index 0)
+    at async b (/Users/christophermarik/Documents/Hugs_CRM/frontend/.next/server/pages/product/[slug].js:1:4571)
+    at async e3 (/Users/christophermarik/Documents/Hugs_CRM/node_modules/next/dist/compiled/next-server/pages.runtime.prod.js:25:3907)
+    at async exportPages (/Users/christophermarik/Documents/Hugs_CRM/node_modules/next/dist/export/routes/pages.js:84:28)
+    at async exportPageImpl (/Users/christophermarik/Documents/Hugs_CRM/node_modules/next/dist/export/worker.js:205:16) {
+  code: 'ERR_CANCELED',
+  config: {
+    transitional: {
+      silentJSONParsing: true,
+      forcedJSONParsing: true,
+      clarifyTimeoutError: false
+    },
+    adapter: [ 'xhr', 'http', 'fetch' ],
+    transformRequest: [ [Function: transformRequest] ],
+    transformResponse: [ [Function: transformResponse] ],
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    maxBodyLength: -1,
+    env: { FormData: [Function [FormData]], Blob: [class Blob] },
+    validateStatus: [Function: validateStatus],
+    headers: Object [AxiosHeaders] {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': undefined,
+      'User-Agent': 'axios/1.13.2',
+      'Accept-Encoding': 'gzip, compress, deflate, br'
+    },
+    signal: AbortSignal { aborted: true },
+    method: 'get',
+    url: 'https://hugs-backend-prod-787273457651.europe-west3.run.app/api/products',
+    allowAbsoluteUrls: true,
+    data: undefined
+  },
+  request: <ref *2> Writable {
+    _events: {
+      close: undefined,
+      error: [Function: handleRequestError],
+      prefinish: undefined,
+      finish: undefined,
+      drain: undefined,
+      response: [Function: handleResponse],
+      socket: [Array],
+      abort: undefined
+    },
+    _writableState: WritableState {
+      highWaterMark: 16384,
+      length: 0,
+      corked: 0,
+      onwrite: [Function: bound onwrite],
+      writelen: 0,
+      bufferedIndex: 0,
+      pendingcb: 0,
+      [Symbol(kState)]: 17581054,
+      [Symbol(kBufferedValue)]: null,
+      [Symbol(kErroredValue)]: [Circular *1]
+    },
+    _maxListeners: undefined,
+    _options: {
+      maxRedirects: 21,
+      maxBodyLength: Infinity,
+      protocol: 'https:',
+      path: '/api/products',
+      method: 'GET',
+      headers: [Object: null prototype],
+      agents: [Object],
+      auth: undefined,
+      family: undefined,
+      beforeRedirect: [Function: dispatchBeforeRedirect],
+      beforeRedirects: [Object],
+      http2Options: undefined,
+      hostname: 'hugs-backend-prod-787273457651.europe-west3.run.app',
+      port: '',
+      agent: undefined,
+      nativeProtocols: [Object],
+      pathname: '/api/products'
+    },
+    _ended: true,
+    _ending: true,
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 0,
+    _requestBodyBuffers: [],
+    _eventsCount: 3,
+    _onNativeResponse: [Function (anonymous)],
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      destroyed: true,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: true,
+      maxRequestsOnConnectionReached: false,
+      _defaultKeepAlive: true,
+      useChunkedEncodingByDefault: false,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      strictContentLength: false,
+      _contentLength: 0,
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      _closed: false,
+      socket: [TLSSocket],
+      _header: 'GET /api/products HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'User-Agent: axios/1.13.2\r\n' +
+        'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+        'Host: hugs-backend-prod-787273457651.europe-west3.run.app\r\n' +
+        'Connection: keep-alive\r\n' +
+        '\r\n',
+      _keepAliveTimeout: 0,
+      _onPendingData: [Function: nop],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'GET',
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      joinDuplicateHeaders: undefined,
+      path: '/api/products',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: [Function: emitRequestTimeout],
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      reusedSocket: false,
+      host: 'hugs-backend-prod-787273457651.europe-west3.run.app',
+      protocol: 'https:',
+      _redirectable: [Circular *2],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(corked)]: 0,
+      [Symbol(kOutHeaders)]: [Object: null prototype],
+      [Symbol(errored)]: null,
+      [Symbol(kHighWaterMark)]: 16384,
+      [Symbol(kRejectNonStandardBodyWrites)]: false,
+      [Symbol(kUniqueHeaders)]: null,
+      [Symbol(kError)]: [Circular *1]
+    },
+    _currentUrl: 'https://hugs-backend-prod-787273457651.europe-west3.run.app/api/products',
+    _timeout: null,
+    [Symbol(shapeMode)]: true,
+    [Symbol(kCapture)]: false
+  }
+}
+ ✓ Generating static pages (23/23)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (pages)                                      Size     First Load JS
+┌ ● / (ISR: 60 Seconds) (1222 ms)                  2.44 kB         113 kB
+├   /_app                                          0 B            78.8 kB
+├ ○ /404                                           181 B            79 kB
+├ ○ /account/orders (648 ms)                       772 B           107 kB
+├ ○ /admin (576 ms)                                1.79 kB         103 kB
+├ ○ /admin/customers (582 ms)                      812 B           102 kB
+├ ○ /admin/customers/[id] (517 ms)                 941 B           102 kB
+├ ○ /admin/dashboard (926 ms)                      101 kB          183 kB
+├ ○ /admin/page-builder (496 ms)                   1.86 kB         105 kB
+├ ○ /admin/page-builder/[slug] (575 ms)            2.64 kB         106 kB
+├ ƒ /admin/products                                2.07 kB         105 kB
+├ ○ /admin/seo (553 ms)                            1.4 kB         80.2 kB
+├ ○ /admin/settings                                1.14 kB         102 kB
+├ ○ /agb                                           1.06 kB         105 kB
+├ ○ /checkout/cancel                               565 B           107 kB
+├ ○ /checkout/success                              684 B           107 kB
+├ ○ /dsgvo                                         1.13 kB         105 kB
+├ ○ /healthz                                       383 B          79.2 kB
+├ ○ /impressum                                     862 B           105 kB
+├ ○ /preview/[slug]                                350 B          79.1 kB
+├ ● /product/[slug] (ISR: 60 Seconds) (3329 ms)    1.96 kB         112 kB
+├   ├ /product/organic-bio-soil-mix-50l (1239 ms)
+├   ├ /product/led-grow-light-pro-120w (1207 ms)
+├   └ /product/precision-pruning-shears (883 ms)
+└ ○ /register                                      1.83 kB         103 kB
++ First Load JS shared by all                      86.6 kB
+  ├ chunks/framework-fbacec006b17dfec.js           45.2 kB
+  ├ chunks/main-0256de52b1e88486.js                32 kB
+  └ other shared chunks (total)                    9.38 kB
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses getStaticProps)
+   (ISR)      incremental static regeneration (uses revalidate in getStaticProps)
+ƒ  (Dynamic)  server-rendered on demand
+

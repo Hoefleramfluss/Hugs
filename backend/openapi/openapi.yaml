@@ -1,0 +1,310 @@
+openapi: 3.0.3
+info:
+  title: Head & Growshop API
+  version: '0.1.0'
+  description: OpenAPI v3 Spec for POS, Inventory, Products, Orders and Auth
+servers:
+  - url: 'http://localhost:4000'
+    description: Local development
+
+security:
+  - bearerAuth: []
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    posApiKey:
+      type: apiKey
+      in: header
+      name: X-POS-API-KEY
+
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+      required: [code, message]
+
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        description:
+          type: string
+        slug:
+          type: string
+        images:
+          type: array
+          items:
+            type: string
+            format: uri
+        sku:
+          type: string
+        variants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Variant'
+        price:
+          type: number
+          format: float
+        taxRate:
+          type: number
+          description: Tax rate as percent (e.g., 10 or 20)
+      required: [id, title]
+
+    Variant:
+      type: object
+      properties:
+        id:
+          type: string
+        sku:
+          type: string
+        attributes:
+          type: object
+          additionalProperties: true
+        price:
+          type: number
+        inventory:
+          type: integer
+      required: [id, sku]
+
+    POS_Event:
+      type: object
+      properties:
+        eventId:
+          type: string
+        type:
+          type: string
+          enum: [sale.completed, refund.created, price.updated, stock.adjusted]
+        storeId:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              sku:
+                type: string
+              qty:
+                type: integer
+              price:
+                type: number
+        payment:
+          type: object
+          properties:
+            method:
+              type: string
+            processor:
+              type: string
+            externalId:
+              type: string
+        idempotencyKey:
+          type: string
+      required: [eventId, type, storeId, timestamp, items, idempotencyKey]
+
+    InventoryTransfer:
+      type: object
+      properties:
+        fromLocationId:
+          type: string
+        toLocationId:
+          type: string
+        variantId:
+          type: string
+        quantity:
+          type: integer
+      required: [fromLocationId, toLocationId, variantId, quantity]
+
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+        customer:
+          type: object
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              sku:
+                type: string
+              qty:
+                type: integer
+              price:
+                type: number
+        total:
+          type: number
+        status:
+          type: string
+          enum: [pending, paid, fulfilled, refunded, canceled]
+      required: [id, items]
+
+paths:
+  /api/auth/login:
+    post:
+      summary: Login (returns JWT)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required: [email, password]
+      responses:
+        '200':
+          description: JWT token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                  refreshToken:
+                    type: string
+        '401':
+          description: Unauthorized
+          content: { 'application/json': { schema: { $ref: '#/components/schemas/Error' } } }
+
+  /api/pos/events:
+    post:
+      summary: POS devices post events (sales, refunds, stock changes)
+      security:
+        - posApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/POS_Event'
+      responses:
+        '200':
+          description: Acknowledged
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  processedAt:
+                    type: string
+                    format: date-time
+        '409':
+          description: Conflict (e.g., inventory concurrent update)
+          content: { 'application/json': { schema: { $ref: '#/components/schemas/Error' } } }
+
+  /api/products:
+    get:
+      summary: List products (optionally filter by location availability)
+      parameters:
+        - in: query
+          name: q
+          schema: { type: string }
+        - in: query
+          name: locationId
+          schema: { type: string }
+      responses:
+        '200':
+          description: Product list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+
+  /api/products/{id}:
+    get:
+      summary: Get product by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Product
+          content: { 'application/json': { schema: { $ref: '#/components/schemas/Product' } } }
+        '404':
+          description: Not found
+
+  /api/inventory/transfer:
+    post:
+      summary: Transfer inventory between locations (transactional)
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InventoryTransfer'
+      responses:
+        '200':
+          description: Transfer completed
+        '400':
+          description: Bad request
+
+  /api/inventory/{locationId}/availability:
+    get:
+      summary: Get availability for a location
+      parameters:
+        - in: path
+          name: locationId
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Availability map
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: integer
+                  description: stock per variantId
+
+  /api/orders:
+    post:
+      summary: Create an order (checkout)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        '201':
+          description: Order created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Order' }
+
+  /api/realtime/sse:
+    get:
+      summary: Server-Sent Events endpoint for realtime updates (inventory, content-updates)
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: text/event-stream

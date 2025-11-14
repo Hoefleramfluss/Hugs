@@ -1,0 +1,216 @@
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+  ~ update in-place
+  - destroy
+
+Terraform will perform the following actions:
+
+  # google_project_service.apis["artifactregistry.googleapis.com"] will be destroyed
+  # (because google_project_service.apis is not in configuration)
+  - resource "google_project_service" "apis" {
+      - disable_on_destroy = false -> null
+      - id                 = "hugs-headshop-20251108122937/artifactregistry.googleapis.com" -> null
+      - project            = "hugs-headshop-20251108122937" -> null
+      - service            = "artifactregistry.googleapis.com" -> null
+    }
+
+  # google_project_service.apis["cloudbuild.googleapis.com"] will be destroyed
+  # (because google_project_service.apis is not in configuration)
+  - resource "google_project_service" "apis" {
+      - disable_on_destroy = false -> null
+      - id                 = "hugs-headshop-20251108122937/cloudbuild.googleapis.com" -> null
+      - project            = "hugs-headshop-20251108122937" -> null
+      - service            = "cloudbuild.googleapis.com" -> null
+    }
+
+  # google_project_service.apis["cloudresourcemanager.googleapis.com"] will be destroyed
+  # (because google_project_service.apis is not in configuration)
+  - resource "google_project_service" "apis" {
+      - disable_on_destroy = false -> null
+      - id                 = "hugs-headshop-20251108122937/cloudresourcemanager.googleapis.com" -> null
+      - project            = "hugs-headshop-20251108122937" -> null
+      - service            = "cloudresourcemanager.googleapis.com" -> null
+    }
+
+  # google_project_service.apis["compute.googleapis.com"] will be destroyed
+  # (because google_project_service.apis is not in configuration)
+  - resource "google_project_service" "apis" {
+      - disable_on_destroy = false -> null
+      - id                 = "hugs-headshop-20251108122937/compute.googleapis.com" -> null
+      - project            = "hugs-headshop-20251108122937" -> null
+      - service            = "compute.googleapis.com" -> null
+    }
+
+  # google_project_service.apis["iam.googleapis.com"] will be destroyed
+  # (because google_project_service.apis is not in configuration)
+  - resource "google_project_service" "apis" {
+      - disable_on_destroy = false -> null
+      - id                 = "hugs-headshop-20251108122937/iam.googleapis.com" -> null
+      - project            = "hugs-headshop-20251108122937" -> null
+      - service            = "iam.googleapis.com" -> null
+    }
+
+  # google_project_service.apis["run.googleapis.com"] will be destroyed
+  # (because google_project_service.apis is not in configuration)
+  - resource "google_project_service" "apis" {
+      - disable_on_destroy = false -> null
+      - id                 = "hugs-headshop-20251108122937/run.googleapis.com" -> null
+      - project            = "hugs-headshop-20251108122937" -> null
+      - service            = "run.googleapis.com" -> null
+    }
+
+  # google_project_service.apis["secretmanager.googleapis.com"] will be destroyed
+  # (because google_project_service.apis is not in configuration)
+  - resource "google_project_service" "apis" {
+      - disable_on_destroy = false -> null
+      - id                 = "hugs-headshop-20251108122937/secretmanager.googleapis.com" -> null
+      - project            = "hugs-headshop-20251108122937" -> null
+      - service            = "secretmanager.googleapis.com" -> null
+    }
+
+  # google_project_service.apis["sqladmin.googleapis.com"] will be destroyed
+  # (because google_project_service.apis is not in configuration)
+  - resource "google_project_service" "apis" {
+      - disable_on_destroy = false -> null
+      - id                 = "hugs-headshop-20251108122937/sqladmin.googleapis.com" -> null
+      - project            = "hugs-headshop-20251108122937" -> null
+      - service            = "sqladmin.googleapis.com" -> null
+    }
+
+  # google_project_service.apis["vpcaccess.googleapis.com"] will be destroyed
+  # (because google_project_service.apis is not in configuration)
+  - resource "google_project_service" "apis" {
+      - disable_on_destroy = false -> null
+      - id                 = "hugs-headshop-20251108122937/vpcaccess.googleapis.com" -> null
+      - project            = "hugs-headshop-20251108122937" -> null
+      - service            = "vpcaccess.googleapis.com" -> null
+    }
+
+  # google_project_service.required["artifactregistry.googleapis.com"] will be created
+  + resource "google_project_service" "required" {
+      + disable_on_destroy = false
+      + id                 = (known after apply)
+      + project            = "hugs-headshop-20251108122937"
+      + service            = "artifactregistry.googleapis.com"
+    }
+
+  # google_project_service.required["cloudbuild.googleapis.com"] will be created
+  + resource "google_project_service" "required" {
+      + disable_on_destroy = false
+      + id                 = (known after apply)
+      + project            = "hugs-headshop-20251108122937"
+      + service            = "cloudbuild.googleapis.com"
+    }
+
+  # google_project_service.required["cloudresourcemanager.googleapis.com"] will be created
+  + resource "google_project_service" "required" {
+      + disable_on_destroy = false
+      + id                 = (known after apply)
+      + project            = "hugs-headshop-20251108122937"
+      + service            = "cloudresourcemanager.googleapis.com"
+    }
+
+  # google_project_service.required["compute.googleapis.com"] will be created
+  + resource "google_project_service" "required" {
+      + disable_on_destroy = false
+      + id                 = (known after apply)
+      + project            = "hugs-headshop-20251108122937"
+      + service            = "compute.googleapis.com"
+    }
+
+  # google_project_service.required["iam.googleapis.com"] will be created
+  + resource "google_project_service" "required" {
+      + disable_on_destroy = false
+      + id                 = (known after apply)
+      + project            = "hugs-headshop-20251108122937"
+      + service            = "iam.googleapis.com"
+    }
+
+  # google_project_service.required["run.googleapis.com"] will be created
+  + resource "google_project_service" "required" {
+      + disable_on_destroy = false
+      + id                 = (known after apply)
+      + project            = "hugs-headshop-20251108122937"
+      + service            = "run.googleapis.com"
+    }
+
+  # google_project_service.required["secretmanager.googleapis.com"] will be created
+  + resource "google_project_service" "required" {
+      + disable_on_destroy = false
+      + id                 = (known after apply)
+      + project            = "hugs-headshop-20251108122937"
+      + service            = "secretmanager.googleapis.com"
+    }
+
+  # google_project_service.required["sqladmin.googleapis.com"] will be created
+  + resource "google_project_service" "required" {
+      + disable_on_destroy = false
+      + id                 = (known after apply)
+      + project            = "hugs-headshop-20251108122937"
+      + service            = "sqladmin.googleapis.com"
+    }
+
+  # google_project_service.required["vpcaccess.googleapis.com"] will be created
+  + resource "google_project_service" "required" {
+      + disable_on_destroy = false
+      + id                 = (known after apply)
+      + project            = "hugs-headshop-20251108122937"
+      + service            = "vpcaccess.googleapis.com"
+    }
+
+  # google_sql_database_instance.primary will be updated in-place
+  ~ resource "google_sql_database_instance" "primary" {
+        id                             = "hugs-pg-instance-prod"
+        name                           = "hugs-pg-instance-prod"
+        # (14 unchanged attributes hidden)
+
+      ~ settings {
+            # (15 unchanged attributes hidden)
+
+          ~ ip_configuration {
+              ~ ipv4_enabled                                  = true -> false
+              + private_network                               = "projects/hugs-headshop-20251108122937/global/networks/hugs-vpc"
+                # (3 unchanged attributes hidden)
+            }
+
+            # (3 unchanged blocks hidden)
+        }
+    }
+
+  # google_sql_user.app will be destroyed
+  # (because google_sql_user.app is not in configuration)
+  - resource "google_sql_user" "app" {
+      - id                      = "shopuser//hugs-pg-instance-prod" -> null
+      - instance                = "hugs-pg-instance-prod" -> null
+      - name                    = "shopuser" -> null
+      - project                 = "hugs-headshop-20251108122937" -> null
+      - sql_server_user_details = [] -> null
+    }
+
+Plan: 9 to add, 1 to change, 10 to destroy.
+
+Changes to Outputs:
+  - artifact_registry_repo          = "projects/hugs-headshop-20251108122937/locations/europe-west3/repositories/hugs-headshop-repo" -> null
+  + artifact_registry_repository    = "projects/hugs-headshop-20251108122937/locations/europe-west3/repositories/hugs-headshop-repo"
+  + network_self_link               = "https://www.googleapis.com/compute/v1/projects/hugs-headshop-20251108122937/global/networks/hugs-vpc"
+  + secret_manager_resources        = {
+      + database-url          = "projects/787273457651/secrets/database-url"
+      + db-password           = "projects/787273457651/secrets/db-password"
+      + gemini-api-key        = "projects/787273457651/secrets/gemini-api-key"
+      + jwt-secret            = "projects/787273457651/secrets/jwt-secret"
+      + pos-api-key           = "projects/787273457651/secrets/pos-api-key"
+      + stripe-secret-key     = "projects/787273457651/secrets/stripe-secret-key"
+      + stripe-webhook-secret = "projects/787273457651/secrets/stripe-webhook-secret"
+    }
+  - secret_resource_names           = {
+      - database-url          = "projects/787273457651/secrets/database-url"
+      - db-password           = "projects/787273457651/secrets/db-password"
+      - gemini-api-key        = "projects/787273457651/secrets/gemini-api-key"
+      - jwt-secret            = "projects/787273457651/secrets/jwt-secret"
+      - pos-api-key           = "projects/787273457651/secrets/pos-api-key"
+      - stripe-secret-key     = "projects/787273457651/secrets/stripe-secret-key"
+      - stripe-webhook-secret = "projects/787273457651/secrets/stripe-webhook-secret"
+    } -> null
+  + subnet_self_link                = "https://www.googleapis.com/compute/v1/projects/hugs-headshop-20251108122937/regions/europe-west3/subnetworks/hugs-vpc-subnet"

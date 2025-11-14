@@ -1,0 +1,84 @@
+# Guidance on Cost Optimization and Security
+
+## Cost Monitoring & Budgeting
+
+Proactively managing costs is crucial. GCP provides tools to set budgets and receive alerts to avoid unexpected expenses.
+
+### Setting Up a Project Budget
+
+Follow these steps to create a budget for the `hugs-headshop-20251108122937` project.
+
+1.  **Navigate to Budgets & Alerts**:
+    *   In the GCP Console, go to the navigation menu.
+    *   Select **Billing**.
+    *   In the Billing navigation, click on **Budgets & alerts**.
+
+2.  **Create a Budget**:
+    *   Click **Create budget**.
+    *   **Name**: Give it a descriptive name, e.g., `HUGS Headshop - Monthly Budget`.
+    *   **Scope**:
+        *   **Projects**: Ensure `hugs-headshop-20251108122937` is selected.
+        *   **Services**: You can select "All services" or choose specific services (e.g., Cloud Run, Cloud SQL) to monitor. "All services" is recommended for a total project budget.
+    *   **Amount**:
+        *   **Budget type**: Choose "Specified amount".
+        *   **Target amount**: Enter your desired monthly budget in your local currency (e.g., `100` for €100).
+    *   **Actions - Alert threshold rules**: This is the most important step for getting notified.
+        *   Set multiple thresholds based on the percentage of the budget. It's good practice to set several alerts:
+            *   **50%** of budget (Actual cost) -> Early warning
+            *   **90%** of budget (Actual cost) -> Critical warning
+            *   **100%** of budget (Actual cost) -> Budget reached
+            *   **90%** of budget (**Forecasted** cost) -> Proactive alert that you are on track to exceed the budget.
+        *   For each rule, under **Manage notifications**, select the notification channels you created (e.g., `HUGS Ops Email`).
+    *   Click **Finish**.
+
+### Analyzing Costs
+
+*   **Billing Reports**: In the **Billing** section, use the **Reports** view to get a detailed, filterable breakdown of your costs. You can group by project, service, or even SKU to understand exactly where your money is going.
+*   **Cost Table**: The **Cost Table** view provides a granular, tabular report of your expenses, which can be useful for detailed analysis.
+
+## Cost Optimization
+
+1.  **Cloud Run Autoscaling**:
+    *   The `min_instance_count` is set to `0` by default. This is the most cost-effective setting for services with variable or infrequent traffic, as you pay nothing when idle.
+    *   For services requiring low latency (no cold starts), consider setting `min_instance_count` to `1`.
+    *   Monitor traffic and adjust `max_instance_count` to prevent unexpected cost spikes.
+
+2.  **Cloud SQL**:
+    *   The `db-g1-small` tier is a cost-effective starting point. Monitor CPU and memory usage and resize the instance as needed.
+    *   Consider purchasing a 1-year or 3-year **Committed Use Discount (CUD)** for the Cloud SQL instance once your workload is stable. This can provide significant savings (30-50%).
+
+3.  **Memorystore (Redis)**:
+    *   The `BASIC` tier is used, which is suitable for caching and simple pub/sub. It does not provide high availability. If HA is required, upgrade to the `STANDARD` tier.
+    *   Monitor memory usage. If consistently low, consider a smaller instance size if available.
+
+4.  **Logging**:
+    *   By default, logs are sent to Cloud Logging. Be mindful of the volume of logs generated. For high-volume services, consider setting up log sinks to export logs to Cloud Storage or BigQuery, which can be more cost-effective for long-term storage and analysis.
+
+## Security Checklist
+
+1.  **VPC and Private Networking**:
+    *   **Status**: Implemented.
+    *   **Details**: Cloud SQL and Redis are configured with private IP addresses and are only accessible from within the VPC network. The Cloud Run services connect via a Serverless VPC Connector, preventing public exposure of the database.
+
+2.  **Secret Management**:
+    *   **Status**: Implemented.
+    *   **Details**: All sensitive credentials (DB passwords, API keys) are stored in Google Secret Manager. The Terraform configuration only references the secret names, not the values themselves.
+    *   **Action Required**: Regularly rotate secrets, especially the database password.
+
+3.  **IAM (Least Privilege)**:
+    *   **Status**: Implemented.
+    *   **Details**: A dedicated service account (`hugs-cloud-run-sa`) is created for the Cloud Run services with only the necessary roles (`Cloud SQL Client`, `Pub/Sub Publisher`, `Secret Manager Accessor`, `Storage Object Admin`).
+    *   **Action Required**: Regularly review IAM permissions. Avoid granting broad roles like `Editor` or `Owner` to service accounts.
+
+4.  **Cloud Storage Security**:
+    *   **Status**: Implemented.
+    *   **Details**: Buckets are configured with `uniform_bucket_level_access` and `public_access_prevention` is enforced. Access to assets should be served via a CDN, and uploads should use signed URLs generated by the backend.
+
+5.  **Cloud Run Security**:
+    *   **Status**: Implemented.
+    *   **Details**: Services are deployed to Cloud Run, which is a managed service that handles OS patching and other underlying security concerns.
+    *   **Action Required**: Ensure application-level security (input validation, authentication, authorization) is robust. The infrastructure cannot protect against application vulnerabilities.
+
+6.  **Audit Logging**:
+    *   **Status**: Enabled by default in GCP.
+    *   **Action Required**: Periodically review audit logs for any suspicious activity. Consider creating log-based alerts for critical security events (e.g., IAM policy changes).

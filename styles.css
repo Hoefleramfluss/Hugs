@@ -1,0 +1,22 @@
+/*
+ * Using a CDN for Tailwind CSS for simplicity as there is no root-level
+ * build process for CSS configured.
+ */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css');
+
+body {
+  /* These colors are from frontend/tailwind.config.js */
+  --primary: #22c55e;
+  --primary-dark: #16a34a;
+  --secondary: #f97316;
+  --background: #f8fafc;
+  --surface: #ffffff;
+  --surface-light: #f1f5f9;
+  --on-surface: #0f172a;
+  --on-surface-variant: #64748b;
+}
+
+.bg-background { background-color: var(--background); }
+.bg-primary { background-color: var(--primary); }
+.text-primary { color: var(--primary); }
+/* Add more custom utility classes as needed */

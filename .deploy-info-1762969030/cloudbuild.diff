@@ -1,0 +1,14 @@
+--- /Users/christophermarik/Documents/Hugs_CRM/.deploy-info-1762969030/cloudbuild.yaml.bak	2025-11-12 18:38:38
++++ /Users/christophermarik/Documents/Hugs_CRM/.deploy-info-1762969030/cloudbuild.yaml.patched	2025-11-12 18:38:39
+@@ -137,9 +137,9 @@
+           exit 0;
+         fi
+         set -euo pipefail
+-        BACKEND_URL=$$(gcloud run services describe "hugs-backend-${_ENV}" --platform managed --region ${_GCP_REGION} --format='value(status.url)')
++        _BACKEND_URL=$$(gcloud run services describe "hugs-backend-${_ENV}" --platform managed --region ${_GCP_REGION} --format='value(status.url)')
+         FRONTEND_URL=$$(gcloud run services describe "hugs-frontend-${_ENV}" --platform managed --region ${_GCP_REGION} --format='value(status.url)')
+-        BACKEND_URL="$$BACKEND_URL" FRONTEND_URL="$$FRONTEND_URL" bash ci/check_post_deploy.sh
++        _BACKEND_URL="$$_BACKEND_URL" FRONTEND_URL="$$FRONTEND_URL" bash ci/check_post_deploy.sh
+ 
+ substitutions:
+   _GCP_REGION: 'europe-west3'

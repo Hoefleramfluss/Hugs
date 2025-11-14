@@ -1,0 +1,12 @@
+# macOS (Homebrew)
+brew install --cask docker
+# dann Docker.app starten (Menüleiste), evtl. Setup einmalig zulassen
+
+# Linux (Debian/Ubuntu)
+sudo apt-get update
+sudo apt-get install -y docker.io
+sudo systemctl enable --now docker
+# evtl. Nutzer zur docker-Gruppe hinzufügen:
+# sudo usermod -aG docker $USER && newgrp docker
+
+# Alternativ: Führe Docker-Smoke in einer CI-Umgebung (Cloud Build) aus statt lokal.
