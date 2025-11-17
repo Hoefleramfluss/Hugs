@@ -1,2 +1,0 @@
-curl exit code: 0
-Backend checked at: 2025-11-13T18:42:54Z

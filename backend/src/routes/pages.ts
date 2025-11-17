@@ -1,26 +1,21 @@
 import { FastifyInstance } from 'fastify';
-import { Prisma } from '@prisma/client';
 import { authenticate } from '../lib/auth';
 
 type SectionInput = {
   id?: string;
   type: string;
-  props?: Prisma.InputJsonValue;
+  props?: unknown;
   order?: number;
 };
 
-function normalizeSections(
-  sections: SectionInput[]
-): Prisma.SectionCreateWithoutPageInput[] {
+function normalizeSections(sections: SectionInput[]) {
   return sections.map((section, index) => {
-    const normalizedProps: Prisma.InputJsonValue =
-      section.props && typeof section.props === 'object'
-        ? (section.props as Prisma.JsonObject)
-        : (Prisma.JsonNull as unknown as Prisma.InputJsonValue);
+    const normalizedProps =
+      section.props && typeof section.props === 'object' ? section.props : null;
 
     return {
       type: section.type,
-      props: normalizedProps,
+      props: normalizedProps ?? undefined,
       order: typeof section.order === 'number' ? section.order : index,
     };
   });

@@ -1,55 +1,93 @@
 
-# Running Prisma Migrations in Cloud Build
+# Production Prisma migration playbook
 
-Deploying database schema changes requires a secure and reliable process. This guide explains how to run `prisma migrate deploy` in a Cloud Build step, connecting to a private Cloud SQL instance using the Cloud SQL Auth Proxy.
+This document defines **the official procedure** for applying Prisma schema changes to the production Cloud SQL instance that backs the Hugs backend. Follow these steps whenever a migration needs to be rolled out to production.
 
-## The Challenge
+## 1. Prepare a safe migration
 
-Our Cloud SQL instance has a private IP and is not accessible from the public internet. Cloud Build runs in a separate environment, so it cannot connect directly. The solution is the **Cloud SQL Auth Proxy**, which provides a secure, encrypted connection.
+1. Generate the migration on your local dev/stage database: `npx prisma migrate dev`.
+2. Review the generated SQL in `backend/prisma/migrations/<timestamp>_<name>/migration.sql` and commit it.
+3. Merge the migration into the default branch so that the backend image is built with the latest Prisma client.
 
-The `gcr.io/google-appengine/exec-wrapper` builder in Cloud Build is a convenient tool that bundles the Cloud SQL Auth Proxy.
+## 2. Run the migration against production (recommended workflow)
 
-## Cloud Build Step for Migrations
+> We run production migrations manually from a trusted workstation using the Cloud SQL Auth Proxy over a private connection. This avoids the Cloud Build environment limitations and keeps control in the hands of the operator who owns the release.
 
-The following step from `ci/cloudbuild.yaml` handles the migration:
+Open a new terminal and start the proxy:
+
+```bash
+export PROJECT_ID="hugs-headshop-20251108122937"
+export DB_INSTANCE="${PROJECT_ID}:europe-west3:hugs-pg-instance-prod"
+
+docker run --rm -it \
+  -v "${HOME}/.config/gcloud:/root/.config/gcloud" \
+  -p 127.0.0.1:5432:5432 \
+  gcr.io/cloudsql-docker/gce-proxy:1.33.1 /cloud_sql_proxy \
+    -instances="${DB_INSTANCE}=tcp:0.0.0.0:5432"
+```
+
+In your repo terminal:
+
+```bash
+cd /Users/christophermarik/Documents/Hugs_CRM
+
+export DATABASE_URL="$(gcloud secrets versions access latest \
+  --project=hugs-headshop-20251108122937 \
+  --secret=database-url)"
+
+npx prisma migrate deploy --schema=backend/prisma/schema.prisma
+
+# Optional sanity check
+npx prisma migrate status --schema=backend/prisma/schema.prisma
+```
+
+Clean up by stopping the proxy container when you are done.
+
+### Golden rules
+
+- **Always** validate the migration in a non-production environment before touching prod.
+- **Always** run the commands above before releasing backend code that depends on the new schema.
+- If seeding production data is required, set `CONFIRM_PROD_SEED=true` explicitly and double-check backups.
+
+## 3. Post-migration smoke checks
+
+After `prisma migrate deploy` finishes successfully:
+
+1. Hit the backend health endpoint with an identity token: `curl -H "Authorization: Bearer $TOKEN" "$BACKEND_URL/api/healthz"`.
+2. Verify products load: `curl -H "Authorization: Bearer $TOKEN" "$BACKEND_URL/api/products"`.
+3. Optionally run end-to-end smoke tests via Playwright:
+
+   ```bash
+   export NEXT_PUBLIC_BASE_URL="https://<your-frontend-url>"
+   export PW_BASE_URL="$NEXT_PUBLIC_BASE_URL"
+
+   cd frontend
+   npx playwright test --project=chromium
+   ```
+
+## Appendix: Cloud Build migration job
+
+We keep a Cloud Build job (`ci/prisma-migrate.yaml`) for one-off execution in controlled environments. It mirrors the manual workflow above, using `gcr.io/google-appengine/exec-wrapper` to start the Cloud SQL Auth Proxy and execute `npx prisma migrate deploy` inside a Node 20 container.
 
 ```yaml
 - name: 'gcr.io/google-appengine/exec-wrapper'
-  id: 'Run Prisma Migrations'
   args:
     - '-i'
-    - 'gcr.io/cloud-builders/npm' # The image to run our command in
+    - 'node:20'
     - '-s'
-    - '${_DB_CONNECTION_NAME}' # The Cloud SQL instance connection string
+    - '${_DB_CONNECTION_NAME}'
+    - '-e'
+    - 'DATABASE_URL'
     - '--'
-    - 'npm'
-    - 'run'
-    - 'migrate:deploy'
-  dir: 'backend'
+    - 'bash'
+    - '-lc'
+    - |
+        set -euo pipefail
+        cd /workspace/backend
+        npx prisma migrate deploy --schema=prisma/schema.prisma
+  env:
+    - 'CLOUD_SQL_PROXY_ARGS=--private-ip'
   secretEnv: ['DATABASE_URL']
 ```
 
-### How It Works
-
-1.  `name: 'gcr.io/google-appengine/exec-wrapper'`: This is the builder image that contains the Cloud SQL Auth Proxy.
-2.  `-i 'gcr.io/cloud-builders/npm'`: This tells the wrapper which container image to *run our command inside*. We use the standard `npm` builder because our `package.json` has the necessary scripts.
-3.  `-s '${_DB_CONNECTION_NAME}'`: This is the crucial flag. It tells the wrapper to start the Cloud SQL Auth Proxy and connect it to our database instance. The `_DB_CONNECTION_NAME` is a substitution variable provided to the build, e.g., `my-project:europe-west3:my-instance`. The proxy will be available at `/cloudsql/${_DB_CONNECTION_NAME}` inside the container.
-4.  `-- 'npm' 'run' 'migrate:deploy'`: These are the commands that will be executed inside the `npm` container *after* the proxy is running and connected.
-5.  `dir: 'backend'`: This sets the working directory to `/backend`, where our `package.json` and `prisma` schema are located.
-6.  `secretEnv: ['DATABASE_URL']`: This is a placeholder to demonstrate how you would inject the full database URL if needed (e.g., if it contains the password). The `DATABASE_URL` in your `package.json` or Prisma schema should be configured to use the proxy socket path.
-
-### Prisma `schema.prisma` Configuration
-
-Your `datasource` block in `schema.prisma` should be configured to use the socket path provided by the proxy when running in the cloud environment.
-
-```prisma
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-```
-
-The `DATABASE_URL` environment variable should be set to:
-`postgresql://<USER>:<PASSWORD>@localhost/<DB_NAME>?host=/cloudsql/<INSTANCE_CONNECTION_NAME>`
-
-This URL format tells Prisma to connect via the Unix socket created by the Cloud SQL Auth Proxy, rather than over TCP.
+> Cloud Build should **not** run migrations as part of every backend deployment. The main pipeline in `ci/cloudbuild.yaml` gates the migration step behind `_RUN_DB_MIGRATIONS=true` and should normally skip it.

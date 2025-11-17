@@ -31,10 +31,12 @@ steps:
   - name: 'gcr.io/cloud-builders/npm'
     id: 'Build frontend (SSG check)'
     entrypoint: 'bash'
+    env:
+      - 'DEPLOY_TARGET=${_DEPLOY_TARGET}'
     args:
       - '-c'
       - |
-        target="${_DEPLOY_TARGET:-all}"
+        target="${DEPLOY_TARGET:-all}"
         echo "[Build frontend] target: ${target}"
         echo "[Build frontend] Deploy target: ${target}"
         if [[ "${target}" != "frontend" && "${target}" != "all" && "${target}" != "full" ]]; then
@@ -46,10 +48,12 @@ steps:
   - name: 'mcr.microsoft.com/playwright:v1.56.1-jammy'
     id: 'Run frontend smoke tests'
     entrypoint: 'bash'
+    env:
+      - 'DEPLOY_TARGET=${_DEPLOY_TARGET}'
     args:
       - '-c'
       - |
-        target="${_DEPLOY_TARGET:-all}"
+        target="${DEPLOY_TARGET:-all}"
         echo "DEPLOY_TARGET=${target}"
         if [[ "${target}" == "backend" ]]; then
           echo 'DEPLOY_TARGET=backend -> skipping frontend smoke tests';
@@ -133,6 +137,8 @@ steps:
 
   - name: 'gcr.io/google-appengine/exec-wrapper'
     id: 'Run Prisma migrations'
+    env:
+      - 'CLOUD_SQL_PROXY_ARGS=--private-ip'
     args:
       - '-i'
       - 'node:20'
@@ -143,7 +149,18 @@ steps:
       - '--'
       - 'bash'
       - '-lc'
-      - 'if [[ "${_DEPLOY_TARGET}" == "frontend" ]]; then echo "Skipping Prisma migrations"; exit 0; fi; if [[ "${_DEPLOY_TARGET}" != "backend" && "${_DEPLOY_TARGET}" != "all" && "${_DEPLOY_TARGET}" != "full" ]]; then echo "Skipping Prisma migrations for deploy target ${_DEPLOY_TARGET}"; exit 0; fi; cd /workspace/backend && npx prisma migrate deploy'
+      - |
+          set -euo pipefail
+          echo "[Run Prisma migrations] DEPLOY_TARGET=${_DEPLOY_TARGET}"
+
+          if [[ "${_DEPLOY_TARGET}" != "backend" && "${_DEPLOY_TARGET}" != "all" && "${_DEPLOY_TARGET}" != "full" ]]; then
+            echo "[Run Prisma migrations] Skipping migrations for DEPLOY_TARGET=${_DEPLOY_TARGET}"
+            exit 0
+          fi
+
+          cd /workspace/backend
+          echo "[Run Prisma migrations] Using schema prisma/schema.prisma"
+          npx prisma migrate deploy --schema=prisma/schema.prisma
     secretEnv: ['DATABASE_URL']
 
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'

@@ -1,6 +1,0 @@
-settings:
-  maintenanceWindow:
-    day: 0
-    hour: 0
-    kind: sql#maintenanceWindow
-    updateTrack: stable

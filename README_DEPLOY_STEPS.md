@@ -28,21 +28,36 @@ npm run seed
 ```
 
 ### Against production (Cloud SQL)
-1. Open a Cloud SQL Proxy tunnel (new terminal):
+Follow the [Production Prisma migration playbook](infra/prisma-deploy.md) for the canonical process. Quick reference:
+
+1. Start the Cloud SQL Auth Proxy (new terminal):
    ```bash
-   ./cloud_sql_proxy \
-     -instances=hugs-headshop-20251108122937:europe-west3:hugs-pg-instance-prod=tcp:6432
+   export PROJECT_ID="hugs-headshop-20251108122937"
+   export DB_INSTANCE="${PROJECT_ID}:europe-west3:hugs-pg-instance-prod"
+
+   docker run --rm -it \
+     -v "${HOME}/.config/gcloud:/root/.config/gcloud" \
+     -p 127.0.0.1:5432:5432 \
+     gcr.io/cloudsql-docker/gce-proxy:1.33.1 /cloud_sql_proxy \
+       -instances="${DB_INSTANCE}=tcp:0.0.0.0:5432"
    ```
-2. Export the production connection string that reuses the managed Secret Manager values:
+2. Export the managed connection string and apply migrations:
    ```bash
-   export DATABASE_URL="postgresql://shopuser:$(gcloud secrets versions access latest --secret=db-password --project=hugs-headshop-20251108122937)@127.0.0.1:6432/shopdb"
+   cd /Users/christophermarik/Documents/Hugs_CRM
+   export DATABASE_URL="$(gcloud secrets versions access latest \
+     --project=hugs-headshop-20251108122937 \
+     --secret=database-url)"
+
+   npx prisma migrate deploy --schema=backend/prisma/schema.prisma
    ```
-3. Apply migrations and (optionally) seed. **Seeding production requires an explicit confirmation flag** to avoid accidental data loss:
+3. Optional sanity checks:
    ```bash
-   cd backend
-   npm run migrate:deploy
-   CONFIRM_PROD_SEED=true npm run seed    # only after taking a DB backup
+   npx prisma migrate status --schema=backend/prisma/schema.prisma
+   curl -H "Authorization: Bearer $TOKEN" "$BACKEND_URL/api/healthz"
+   curl -H "Authorization: Bearer $TOKEN" "$BACKEND_URL/api/products"
    ```
+
+> **Note:** Production seeding remains opt-in. If you ever need to seed, set `CONFIRM_PROD_SEED=true` and take a backup first.
 
 ## 3. Terraform workflow
 
@@ -92,7 +107,7 @@ gcloud builds submit \
 # Backend health
 curl https://hugs-backend-prod-787273457651.europe-west3.run.app/api/healthz
 
-# Frontend reachability
+# Frontend reachability (temporärer Healthcheck, `/healthz` folgt)
 curl -I https://hugs-frontend-prod-787273457651.europe-west3.run.app/
 
 # Smoke tests (uses deployed URLs)
@@ -102,3 +117,10 @@ ci/check_post_deploy.sh
 ```
 
 Update the placeholder frontend URL once Cloud Run returns the live endpoint (`gcloud run services describe hugs-frontend-prod --region europe-west3 --format='value(status.url)'`).
+
+### Post-Deploy
+
+- Backend-/Frontend-Healthchecks (siehe oben; Frontend aktuell via `HEAD /`, `/healthz` als Follow-up)
+- Prisma-Migrationen: siehe `infra/prisma-deploy.md`
+- **E2E-Smoketests (PROD):** siehe `ops/release-checklist.md` („E2E Smoke – Playwright (PROD)“)
+  - Letzter grüner Run: 2025-11-17, Artefakte `.deploy-info-1763380384/`

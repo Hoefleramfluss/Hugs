@@ -1,8 +1,0 @@
-# google_sql_user.app:
-resource "google_sql_user" "app" {
-    id                      = "shopuser//hugs-pg-instance-prod"
-    instance                = "hugs-pg-instance-prod"
-    name                    = "shopuser"
-    project                 = "hugs-headshop-20251108122937"
-    sql_server_user_details = []
-}

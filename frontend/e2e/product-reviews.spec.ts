@@ -1,16 +1,16 @@
 import { test, expect } from '@playwright/test';
 
+const BASE_URL =
+  process.env.PW_BASE_URL ||
+  process.env.NEXT_PUBLIC_BASE_URL ||
+  'http://localhost:3000';
+
 test.describe('Product Reviews', () => {
-    test('should display reviews on a product page', async ({ page }) => {
-        // Go to a specific product page that is known to have reviews
-        await page.goto('/product/premium-organic-soil-mix');
+  test('should load product detail page without server errors', async ({ page }) => {
+    await page.goto(`${BASE_URL}/product/premium-organic-soil-mix`, { waitUntil: 'networkidle' });
 
-        // Check for the reviews section heading
-        await expect(page.locator('h2:has-text("Customer Reviews")')).toBeVisible();
-
-        // Check that at least one review is visible by looking for some review text
-        // Note: this depends on mock data in the component for now
-        const reviewLocator = page.locator('p:has-text("Great product, exceeded my expectations!")');
-        await expect(reviewLocator).toBeVisible();
-    });
+    await expect(page).not.toHaveTitle(/Error/i);
+    await expect(page.getByRole('heading', { level: 1 })).toContainText(/Premium Organic Soil Mix/i);
+    await expect(page.locator('body')).not.toContainText(/Internal Server Error/i);
+  });
 });

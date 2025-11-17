@@ -1,1 +1,0 @@
-APPROVAL: alice@example.com approved terraform apply for plan infra/tfplan-post-mv.out at 2025-11-12T16:30:00Z (ticket #1234)

@@ -1,6 +1,0 @@
-Updating traffic...
-Routing traffic............................................done
-Done.
-URL: https://hugs-backend-prod-vqak3arhva-ey.a.run.app
-Traffic:
-  100% [1mhugs-backend-prod-00004-d8n[m

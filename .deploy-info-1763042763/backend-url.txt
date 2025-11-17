@@ -1,1 +1,0 @@
-BACKEND_URL=https://hugs-backend-prod-vqak3arhva-ey.a.run.app

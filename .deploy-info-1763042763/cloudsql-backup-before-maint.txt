@@ -1,3 +1,0 @@
-Backing up Cloud SQL instance...
-.......done.
-[https://sqladmin.googleapis.com/sql/v1beta4/projects/hugs-headshop-20251108122937/instances/hugs-pg-instance-prod] backed up.
