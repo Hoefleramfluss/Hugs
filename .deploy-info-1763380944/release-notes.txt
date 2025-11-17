@@ -1,0 +1,23 @@
+Hugs CRM PROD Release
+
+Tag: prod-20251117-130137
+Datum: 2025-11-17T13:02:24+01:00
+
+Backend URL: https://hugs-backend-prod-vqak3arhva-ey.a.run.app
+Frontend URL: https://hugs-frontend-prod-vqak3arhva-ey.a.run.app
+
+Health Checks:
+- Backend: GET /api/healthz -> 200 OK
+- Backend: GET /api/products -> 200 OK, keine Prisma P20xx
+- Frontend: HEAD / -> 200 OK (aktuell akzeptierter Healthcheck; /healthz folgt später)
+
+Tests:
+- npm test --workspace=backend -> OK
+- ./tools/run-playwright-prod.sh (Chromium, PROD-URL) -> OK
+
+DB:
+- Hotfix-SQLs für Product/ProductImage/ProductVariant in infra/sql/* eingespielt.
+- PROD-DB-Schema entspricht dem Prisma-Schema für alle aktuell verwendeten Felder.
+
+Hinweis:
+- Frontend-/healthz-Endpunkt als separaten Task für ein zukünftiges Release einplanen.
