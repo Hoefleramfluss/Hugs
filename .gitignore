@@ -24,3 +24,16 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Terraform
+infra/.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+
+# Large files and binaries
+*.tar.gz
+*.zip
+*.exe
+*.dmg
+*.pkg
