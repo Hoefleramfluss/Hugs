@@ -53,6 +53,11 @@ async function main() {
 
   await server.register(prismaPlugin);
 
+  // Root route
+  server.get('/', async (request, reply) => {
+    return { status: 'ok', message: 'Hugs Backend API' };
+  });
+
   // Routes
   await server.register(authRoutes);
   await server.register(healthRoutes);
