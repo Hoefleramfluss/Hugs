@@ -3,7 +3,7 @@ const PROD_API_URL = 'https://hugs-backend-prod-787273457651.europe-west3.run.ap
 const FALLBACK_API_URL = process.env.NEXT_PUBLIC_API_URL || PROD_API_URL;
 
 const CONTENT_SECURITY_POLICY =
-  "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com; connect-src 'self' https://hugs-backend-prod-787273457651.europe-west3.run.app; img-src 'self' data: https://placehold.co https://images.unsplash.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;";
+  "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com; connect-src 'self' https://hugs-backend-prod-vqak3arhva-ey.a.run.app https://hugs-backend-prod-787273457651.europe-west3.run.app; img-src 'self' data: https://placehold.co https://images.unsplash.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;";
 
 const securityHeaders = [
   {

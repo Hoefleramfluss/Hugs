@@ -1,15 +1,11 @@
-import Head from 'next/head';
+import type { NextPage } from 'next';
 
-const HealthzPage = () => {
+const HealthzPage: NextPage = () => {
+  // Simpler Text-Body reicht für Healthchecks vollkommen
   return (
-    <>
-      <Head>
-        <title>OK</title>
-      </Head>
-      <main className="min-h-screen flex items-center justify-center bg-background text-on-surface">
-        <p>ok</p>
-      </main>
-    </>
+    <main style={{ padding: '1rem', fontFamily: 'system-ui, sans-serif' }}>
+      <pre>{JSON.stringify({ status: 'ok', component: 'frontend' }, null, 2)}</pre>
+    </main>
   );
 };
 

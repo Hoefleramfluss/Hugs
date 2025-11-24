@@ -17,7 +17,7 @@ Prüfen:
 - Logfile `.deploy-info-<TIMESTAMP>/playwright-prod.log` dem Release-Protokoll anhängen.
 - Health-Checks dokumentieren:
   - Backend: `GET ${BACKEND_URL}/api/healthz` → 200
-  - Frontend (temporär): `HEAD ${FRONTEND_URL}/` → 200 (eigene `/healthz`-Page als Follow-up)
+  - Frontend: `GET ${FRONTEND_URL}/health` → 200 (kanonischer Health-Endpunkt)
 
 Falls ein Test scheitert:
 - Ursache analysieren (Regression vs. Testfehler).
@@ -31,5 +31,5 @@ Falls ein Test scheitert:
   - admin-pdw.spec.ts ✅
   - admin-seo.spec.ts ✅
   - product-reviews.spec.ts ✅
-  - Health-Checks: Backend `/api/healthz` 200, Frontend `HEAD /` 200
+  - Health-Checks: Backend `/api/healthz` 200, Frontend `/health` 200
   - Deploy-Artefakte: `.deploy-info-1763380384/`

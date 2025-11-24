@@ -67,7 +67,7 @@ steps:
         set -euo pipefail
         cd frontend
 
-        export NEXT_PUBLIC_BASE_URL="${_FRONTEND_BASE_URL:-https://hugs-frontend-prod-<DEINE-ID>.a.run.app}"
+        export NEXT_PUBLIC_BASE_URL="${_FRONTEND_BASE_URL:-https://hugs-frontend-prod-vqak3arhva-ey.a.run.app}"
         export PW_BASE_URL="$${NEXT_PUBLIC_BASE_URL}"
         export NEXT_PUBLIC_API_URL="${_NEXT_PUBLIC_API_URL}"
 
@@ -151,6 +151,13 @@ steps:
       - '-lc'
       - |
           set -euo pipefail
+          echo "Run Prisma migrations: _RUN_DB_MIGRATIONS=${_RUN_DB_MIGRATIONS}"
+
+          if [ "${_RUN_DB_MIGRATIONS}" = "false" ]; then
+            echo "Run Prisma migrations: skipping because _RUN_DB_MIGRATIONS=false"
+            exit 0
+          fi
+
           echo "[Run Prisma migrations] DEPLOY_TARGET=${_DEPLOY_TARGET}"
 
           if [[ "${_DEPLOY_TARGET}" != "backend" && "${_DEPLOY_TARGET}" != "all" && "${_DEPLOY_TARGET}" != "full" ]]; then

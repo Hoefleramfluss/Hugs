@@ -1,0 +1,35 @@
+steps:
+  - name: 'gcr.io/cloud-builders/npm'
+    id: 'Install frontend deps'
+    dir: 'frontend'
+    args: ['ci']
+
+  - name: 'gcr.io/cloud-builders/npm'
+    id: 'Build frontend'
+    dir: 'frontend'
+    args: ['run', 'build']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'Build frontend image'
+    args: ['build', '-t', 'europe-west3-docker.pkg.dev/hugs-headshop-20251108122937/hugs-headshop-repo/frontend:healthz-fix-20251118-141039', '-f', 'frontend/Dockerfile', '.']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'Push frontend image'
+    args: ['push', 'europe-west3-docker.pkg.dev/hugs-headshop-20251108122937/hugs-headshop-repo/frontend:healthz-fix-20251118-141039']
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    id: 'Deploy frontend service'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'hugs-frontend-prod'
+      - '--image'
+      - 'europe-west3-docker.pkg.dev/hugs-headshop-20251108122937/hugs-headshop-repo/frontend:healthz-fix-20251118-141039'
+      - '--region'
+      - 'europe-west3'
+      - '--platform'
+      - 'managed'
+      - '--quiet'
+
+images:
+  - 'europe-west3-docker.pkg.dev/hugs-headshop-20251108122937/hugs-headshop-repo/frontend:healthz-fix-20251118-141039'

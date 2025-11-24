@@ -1,0 +1,693 @@
+[
+  {
+    "insertId": "ilh8vxdwv3g",
+    "logName": "projects/hugs-headshop-20251108122937/logs/cloudaudit.googleapis.com%2Fsystem_event",
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "methodName": "/Services.ReplaceService",
+      "resourceName": "namespaces/hugs-headshop-20251108122937/revisions/hugs-backend-prod-00015-rfd",
+      "response": {
+        "@type": "type.googleapis.com/google.cloud.run.v1.Revision",
+        "apiVersion": "serving.knative.dev/v1",
+        "kind": "Revision",
+        "metadata": {
+          "annotations": {
+            "run.googleapis.com/client-name": "gcloud",
+            "run.googleapis.com/client-version": "547.0.0",
+            "run.googleapis.com/cloudsql-instances": "hugs-headshop-20251108122937:europe-west3:hugs-pg-instance-prod",
+            "run.googleapis.com/operation-id": "7ff69759-ecb8-425a-898d-8a446e6d8bf1",
+            "run.googleapis.com/startup-cpu-boost": "true",
+            "run.googleapis.com/vpc-access-connector": "projects/hugs-headshop-20251108122937/locations/europe-west3/connectors/hugs-vpc-connector",
+            "run.googleapis.com/vpc-access-egress": "private-ranges-only",
+            "serving.knative.dev/creator": "787273457651-compute@developer.gserviceaccount.com"
+          },
+          "creationTimestamp": "2025-11-17T15:34:28.346555Z",
+          "generation": 1,
+          "labels": {
+            "client.knative.dev/nonce": "wlcafhxvkk",
+            "cloud.googleapis.com/location": "europe-west3",
+            "run.googleapis.com/satisfiesPzs": "true",
+            "run.googleapis.com/startupProbeType": "Default",
+            "serving.knative.dev/configuration": "hugs-backend-prod",
+            "serving.knative.dev/configurationGeneration": "15",
+            "serving.knative.dev/route": "hugs-backend-prod",
+            "serving.knative.dev/service": "hugs-backend-prod",
+            "serving.knative.dev/serviceUid": "cf51c427-a8eb-460d-9b61-6a5560a1b097"
+          },
+          "name": "hugs-backend-prod-00015-rfd",
+          "namespace": "787273457651",
+          "ownerReferences": [
+            {
+              "apiVersion": "serving.knative.dev/v1",
+              "blockOwnerDeletion": true,
+              "controller": true,
+              "kind": "Configuration",
+              "name": "hugs-backend-prod",
+              "uid": "114a134f-bf81-4628-9770-030a1e864c05"
+            }
+          ],
+          "resourceVersion": "AAZDzBXFVj8",
+          "selfLink": "/apis/serving.knative.dev/v1/namespaces/787273457651/revisions/hugs-backend-prod-00015-rfd",
+          "uid": "bce78f04-f563-452b-9497-6a87f8c6f36b"
+        },
+        "spec": {
+          "containerConcurrency": 80,
+          "containers": [
+            {
+              "env": [
+                {
+                  "name": "JWT_SECRET",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "key": "latest",
+                      "name": "jwt-secret"
+                    }
+                  }
+                },
+                {
+                  "name": "STRIPE_SECRET_KEY",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "key": "latest",
+                      "name": "stripe-secret-key"
+                    }
+                  }
+                },
+                {
+                  "name": "STRIPE_WEBHOOK_SECRET",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "key": "latest",
+                      "name": "stripe-webhook-secret"
+                    }
+                  }
+                },
+                {
+                  "name": "POS_API_KEY",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "key": "latest",
+                      "name": "pos-api-key"
+                    }
+                  }
+                },
+                {
+                  "name": "API_KEY",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "key": "latest",
+                      "name": "gemini-api-key"
+                    }
+                  }
+                },
+                {
+                  "name": "DATABASE_URL",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "key": "latest",
+                      "name": "database-url"
+                    }
+                  }
+                }
+              ],
+              "image": "europe-west3-docker.pkg.dev/hugs-headshop-20251108122937/hugs-headshop-repo/backend@sha256:b995d2dcd9d116e449d8da0981a108a0265793f29c2d50635726a7fc25f778a0",
+              "name": "backend-1",
+              "ports": [
+                {
+                  "containerPort": 8080,
+                  "name": "http1"
+                }
+              ],
+              "resources": {
+                "limits": {
+                  "cpu": "1000m",
+                  "memory": "512Mi"
+                }
+              },
+              "startupProbe": {
+                "failureThreshold": 1,
+                "periodSeconds": 240,
+                "tcpSocket": {
+                  "port": 8080
+                },
+                "timeoutSeconds": 240
+              }
+            }
+          ],
+          "serviceAccountName": "hugs-cloud-run-sa@hugs-headshop-20251108122937.iam.gserviceaccount.com",
+          "timeoutSeconds": 300
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2025-11-17T15:34:37.907519Z",
+              "message": "The user-provided container failed to start and listen on the port defined provided by the PORT=8080 environment variable within the allocated timeout. This can happen when the container port is misconfigured or if the timeout is too short. The health check timeout can be extended. Logs for this revision might contain more information.\n\nLogs URL: https://console.cloud.google.com/logs/viewer?project=hugs-headshop-20251108122937&resource=cloud_run_revision/service_name/hugs-backend-prod/revision_name/hugs-backend-prod-00015-rfd&advancedFilter=resource.type%3D%22cloud_run_revision%22%0Aresource.labels.service_name%3D%22hugs-backend-prod%22%0Aresource.labels.revision_name%3D%22hugs-backend-prod-00015-rfd%22 \nFor more troubleshooting guidance, see https://cloud.google.com/run/docs/troubleshooting#container-failed-to-start",
+              "reason": "HealthCheckContainerError",
+              "status": "False",
+              "type": "Ready"
+            },
+            {
+              "lastTransitionTime": "2025-11-17T15:34:37.907519Z",
+              "message": "The user-provided container failed to start and listen on the port defined provided by the PORT=8080 environment variable within the allocated timeout. This can happen when the container port is misconfigured or if the timeout is too short. The health check timeout can be extended. Logs for this revision might contain more information.\n\nLogs URL: https://console.cloud.google.com/logs/viewer?project=hugs-headshop-20251108122937&resource=cloud_run_revision/service_name/hugs-backend-prod/revision_name/hugs-backend-prod-00015-rfd&advancedFilter=resource.type%3D%22cloud_run_revision%22%0Aresource.labels.service_name%3D%22hugs-backend-prod%22%0Aresource.labels.revision_name%3D%22hugs-backend-prod-00015-rfd%22 \nFor more troubleshooting guidance, see https://cloud.google.com/run/docs/troubleshooting#container-failed-to-start",
+              "reason": "HealthCheckContainerError",
+              "status": "False",
+              "type": "ContainerHealthy"
+            },
+            {
+              "lastTransitionTime": "2025-11-17T15:34:31.259032Z",
+              "message": "Container image import completed in 2.3s.",
+              "status": "True",
+              "type": "ContainerReady"
+            },
+            {
+              "lastTransitionTime": "2025-11-17T15:34:35.286310Z",
+              "message": "Provisioning imported containers completed in 4.03s. Checking container health. This will wait for up to 4m for the configured startup probe, including an initial delay of 0s.",
+              "status": "True",
+              "type": "ResourcesAvailable"
+            },
+            {
+              "lastTransitionTime": "2025-11-17T15:34:35.286310Z",
+              "message": "System will retry after 0:00:00 from lastTransitionTime for attempt 0.",
+              "reason": "ImmediateRetry",
+              "severity": "Info",
+              "status": "True",
+              "type": "Retry"
+            }
+          ],
+          "containerStatuses": [
+            {
+              "imageDigest": "europe-west3-docker.pkg.dev/hugs-headshop-20251108122937/hugs-headshop-repo/backend@sha256:b995d2dcd9d116e449d8da0981a108a0265793f29c2d50635726a7fc25f778a0",
+              "name": "backend-1"
+            }
+          ],
+          "imageDigest": "europe-west3-docker.pkg.dev/hugs-headshop-20251108122937/hugs-headshop-repo/backend@sha256:b995d2dcd9d116e449d8da0981a108a0265793f29c2d50635726a7fc25f778a0",
+          "logUrl": "https://console.cloud.google.com/logs/viewer?project=hugs-headshop-20251108122937&resource=cloud_run_revision/service_name/hugs-backend-prod/revision_name/hugs-backend-prod-00015-rfd&advancedFilter=resource.type%3D%22cloud_run_revision%22%0Aresource.labels.service_name%3D%22hugs-backend-prod%22%0Aresource.labels.revision_name%3D%22hugs-backend-prod-00015-rfd%22",
+          "observedGeneration": 1
+        }
+      },
+      "serviceName": "run.googleapis.com",
+      "status": {
+        "code": 9,
+        "message": "Ready condition status changed to False for Revision hugs-backend-prod-00015-rfd with message: The user-provided container failed to start and listen on the port defined provided by the PORT=8080 environment variable within the allocated timeout. This can happen when the container port is misconfigured or if the timeout is too short. The health check timeout can be extended. Logs for this revision might contain more information.\n\nLogs URL: https://console.cloud.google.com/logs/viewer?project=hugs-headshop-20251108122937&resource=cloud_run_revision/service_name/hugs-backend-prod/revision_name/hugs-backend-prod-00015-rfd&advancedFilter=resource.type%3D%22cloud_run_revision%22%0Aresource.labels.service_name%3D%22hugs-backend-prod%22%0Aresource.labels.revision_name%3D%22hugs-backend-prod-00015-rfd%22 \nFor more troubleshooting guidance, see https://cloud.google.com/run/docs/troubleshooting#container-failed-to-start"
+      }
+    },
+    "receiveTimestamp": "2025-11-17T15:34:38.835038168Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "hugs-backend-prod",
+        "location": "europe-west3",
+        "project_id": "hugs-headshop-20251108122937",
+        "revision_name": "hugs-backend-prod-00015-rfd",
+        "service_name": "hugs-backend-prod"
+      },
+      "type": "cloud_run_revision"
+    },
+    "severity": "ERROR",
+    "timestamp": "2025-11-17T15:34:37.921441Z"
+  },
+  {
+    "insertId": "691b408d000de238a8007b34",
+    "labels": {
+      "instanceId": "0014778296f6b9d31168e66d1f71ad44e4398bda9209336b635fed811d744fe823e90432d88bfe52dc9e05a5e13f9d19c23680f32c67b4522ed30cc8c1d5b4554aa2ea43eb4fb87976014b012aaa4a5ee81442b233880a"
+    },
+    "logName": "projects/hugs-headshop-20251108122937/logs/run.googleapis.com%2Fvarlog%2Fsystem",
+    "receiveTimestamp": "2025-11-17T15:34:38.049139817Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "hugs-backend-prod",
+        "location": "europe-west3",
+        "project_id": "hugs-headshop-20251108122937",
+        "revision_name": "hugs-backend-prod-00015-rfd",
+        "service_name": "hugs-backend-prod"
+      },
+      "type": "cloud_run_revision"
+    },
+    "severity": "ERROR",
+    "textPayload": "Default STARTUP TCP probe failed 1 time consecutively for container \"backend-1\" on port 8080. The instance was not started.\nConnection failed with status CANCELLED.",
+    "timestamp": "2025-11-17T15:34:37.909880Z"
+  },
+  {
+    "insertId": "691b408d000c402534b48341",
+    "labels": {
+      "container_name": "backend-1",
+      "instanceId": "0014778296f6b9d31168e66d1f71ad44e4398bda9209336b635fed811d744fe823e90432d88bfe52dc9e05a5e13f9d19c23680f32c67b4522ed30cc8c1d5b4554aa2ea43eb4fb87976014b012aaa4a5ee81442b233880a"
+    },
+    "logName": "projects/hugs-headshop-20251108122937/logs/run.googleapis.com%2Fvarlog%2Fsystem",
+    "receiveTimestamp": "2025-11-17T15:34:38.049139817Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "hugs-backend-prod",
+        "location": "europe-west3",
+        "project_id": "hugs-headshop-20251108122937",
+        "revision_name": "hugs-backend-prod-00015-rfd",
+        "service_name": "hugs-backend-prod"
+      },
+      "type": "cloud_run_revision"
+    },
+    "severity": "WARNING",
+    "textPayload": "Container called exit(1).",
+    "timestamp": "2025-11-17T15:34:37.802731983Z"
+  },
+  {
+    "insertId": "691b408d0007292f667e9a3b",
+    "labels": {
+      "instanceId": "0014778296f6b9d31168e66d1f71ad44e4398bda9209336b635fed811d744fe823e90432d88bfe52dc9e05a5e13f9d19c23680f32c67b4522ed30cc8c1d5b4554aa2ea43eb4fb87976014b012aaa4a5ee81442b233880a"
+    },
+    "logName": "projects/hugs-headshop-20251108122937/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-11-17T15:34:37.473235881Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "hugs-backend-prod",
+        "location": "europe-west3",
+        "project_id": "hugs-headshop-20251108122937",
+        "revision_name": "hugs-backend-prod-00015-rfd",
+        "service_name": "hugs-backend-prod"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "Node.js v20.19.5",
+    "timestamp": "2025-11-17T15:34:37.469295Z"
+  },
+  {
+    "insertId": "691b408d00072928cef973b4",
+    "labels": {
+      "instanceId": "0014778296f6b9d31168e66d1f71ad44e4398bda9209336b635fed811d744fe823e90432d88bfe52dc9e05a5e13f9d19c23680f32c67b4522ed30cc8c1d5b4554aa2ea43eb4fb87976014b012aaa4a5ee81442b233880a"
+    },
+    "logName": "projects/hugs-headshop-20251108122937/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-11-17T15:34:37.473235881Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "hugs-backend-prod",
+        "location": "europe-west3",
+        "project_id": "hugs-headshop-20251108122937",
+        "revision_name": "hugs-backend-prod-00015-rfd",
+        "service_name": "hugs-backend-prod"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "}",
+    "timestamp": "2025-11-17T15:34:37.469288Z"
+  },
+  {
+    "insertId": "691b408d000729234c0a0192",
+    "labels": {
+      "instanceId": "0014778296f6b9d31168e66d1f71ad44e4398bda9209336b635fed811d744fe823e90432d88bfe52dc9e05a5e13f9d19c23680f32c67b4522ed30cc8c1d5b4554aa2ea43eb4fb87976014b012aaa4a5ee81442b233880a"
+    },
+    "logName": "projects/hugs-headshop-20251108122937/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-11-17T15:34:37.473235881Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "hugs-backend-prod",
+        "location": "europe-west3",
+        "project_id": "hugs-headshop-20251108122937",
+        "revision_name": "hugs-backend-prod-00015-rfd",
+        "service_name": "hugs-backend-prod"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "  requireStack: [ '/app/dist/routes/auth.js', '/app/dist/index.js' ]",
+    "timestamp": "2025-11-17T15:34:37.469283Z"
+  },
+  {
+    "insertId": "691b408d0007291e3477bc7a",
+    "labels": {
+      "instanceId": "0014778296f6b9d31168e66d1f71ad44e4398bda9209336b635fed811d744fe823e90432d88bfe52dc9e05a5e13f9d19c23680f32c67b4522ed30cc8c1d5b4554aa2ea43eb4fb87976014b012aaa4a5ee81442b233880a"
+    },
+    "logName": "projects/hugs-headshop-20251108122937/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-11-17T15:34:37.473235881Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "hugs-backend-prod",
+        "location": "europe-west3",
+        "project_id": "hugs-headshop-20251108122937",
+        "revision_name": "hugs-backend-prod-00015-rfd",
+        "service_name": "hugs-backend-prod"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "  code: 'MODULE_NOT_FOUND',",
+    "timestamp": "2025-11-17T15:34:37.469278Z"
+  },
+  {
+    "insertId": "691b408d00072919dd8b07b7",
+    "labels": {
+      "instanceId": "0014778296f6b9d31168e66d1f71ad44e4398bda9209336b635fed811d744fe823e90432d88bfe52dc9e05a5e13f9d19c23680f32c67b4522ed30cc8c1d5b4554aa2ea43eb4fb87976014b012aaa4a5ee81442b233880a"
+    },
+    "logName": "projects/hugs-headshop-20251108122937/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-11-17T15:34:37.473235881Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "hugs-backend-prod",
+        "location": "europe-west3",
+        "project_id": "hugs-headshop-20251108122937",
+        "revision_name": "hugs-backend-prod-00015-rfd",
+        "service_name": "hugs-backend-prod"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "    at Module.require (node:internal/modules/cjs/loader:1289:19) {",
+    "timestamp": "2025-11-17T15:34:37.469273Z"
+  },
+  {
+    "insertId": "691b408d000729159098cb91",
+    "labels": {
+      "instanceId": "0014778296f6b9d31168e66d1f71ad44e4398bda9209336b635fed811d744fe823e90432d88bfe52dc9e05a5e13f9d19c23680f32c67b4522ed30cc8c1d5b4554aa2ea43eb4fb87976014b012aaa4a5ee81442b233880a"
+    },
+    "logName": "projects/hugs-headshop-20251108122937/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-11-17T15:34:37.473235881Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "hugs-backend-prod",
+        "location": "europe-west3",
+        "project_id": "hugs-headshop-20251108122937",
+        "revision_name": "hugs-backend-prod-00015-rfd",
+        "service_name": "hugs-backend-prod"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "    at Module._load (node:internal/modules/cjs/loader:1091:12)",
+    "timestamp": "2025-11-17T15:34:37.469269Z"
+  },
+  {
+    "insertId": "691b408d00072910f57cb810",
+    "labels": {
+      "instanceId": "0014778296f6b9d31168e66d1f71ad44e4398bda9209336b635fed811d744fe823e90432d88bfe52dc9e05a5e13f9d19c23680f32c67b4522ed30cc8c1d5b4554aa2ea43eb4fb87976014b012aaa4a5ee81442b233880a"
+    },
+    "logName": "projects/hugs-headshop-20251108122937/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-11-17T15:34:37.473235881Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "hugs-backend-prod",
+        "location": "europe-west3",
+        "project_id": "hugs-headshop-20251108122937",
+        "revision_name": "hugs-backend-prod-00015-rfd",
+        "service_name": "hugs-backend-prod"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "    at Module.load (node:internal/modules/cjs/loader:1266:32)",
+    "timestamp": "2025-11-17T15:34:37.469264Z"
+  },
+  {
+    "insertId": "691b408d0007290a9fcc9a4a",
+    "labels": {
+      "instanceId": "0014778296f6b9d31168e66d1f71ad44e4398bda9209336b635fed811d744fe823e90432d88bfe52dc9e05a5e13f9d19c23680f32c67b4522ed30cc8c1d5b4554aa2ea43eb4fb87976014b012aaa4a5ee81442b233880a"
+    },
+    "logName": "projects/hugs-headshop-20251108122937/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-11-17T15:34:37.473235881Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "hugs-backend-prod",
+        "location": "europe-west3",
+        "project_id": "hugs-headshop-20251108122937",
+        "revision_name": "hugs-backend-prod-00015-rfd",
+        "service_name": "hugs-backend-prod"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)",
+    "timestamp": "2025-11-17T15:34:37.469258Z"
+  },
+  {
+    "insertId": "691b408d000729054531b675",
+    "labels": {
+      "instanceId": "0014778296f6b9d31168e66d1f71ad44e4398bda9209336b635fed811d744fe823e90432d88bfe52dc9e05a5e13f9d19c23680f32c67b4522ed30cc8c1d5b4554aa2ea43eb4fb87976014b012aaa4a5ee81442b233880a"
+    },
+    "logName": "projects/hugs-headshop-20251108122937/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-11-17T15:34:37.473235881Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "hugs-backend-prod",
+        "location": "europe-west3",
+        "project_id": "hugs-headshop-20251108122937",
+        "revision_name": "hugs-backend-prod-00015-rfd",
+        "service_name": "hugs-backend-prod"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "    at Module._compile (node:internal/modules/cjs/loader:1521:14)",
+    "timestamp": "2025-11-17T15:34:37.469253Z"
+  },
+  {
+    "insertId": "691b408d000728fff8408ddd",
+    "labels": {
+      "instanceId": "0014778296f6b9d31168e66d1f71ad44e4398bda9209336b635fed811d744fe823e90432d88bfe52dc9e05a5e13f9d19c23680f32c67b4522ed30cc8c1d5b4554aa2ea43eb4fb87976014b012aaa4a5ee81442b233880a"
+    },
+    "logName": "projects/hugs-headshop-20251108122937/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-11-17T15:34:37.473235881Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "hugs-backend-prod",
+        "location": "europe-west3",
+        "project_id": "hugs-headshop-20251108122937",
+        "revision_name": "hugs-backend-prod-00015-rfd",
+        "service_name": "hugs-backend-prod"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "    at Object.<anonymous> (/app/dist/routes/auth.js:6:34)",
+    "timestamp": "2025-11-17T15:34:37.469247Z"
+  },
+  {
+    "insertId": "691b408d000728fac188047f",
+    "labels": {
+      "instanceId": "0014778296f6b9d31168e66d1f71ad44e4398bda9209336b635fed811d744fe823e90432d88bfe52dc9e05a5e13f9d19c23680f32c67b4522ed30cc8c1d5b4554aa2ea43eb4fb87976014b012aaa4a5ee81442b233880a"
+    },
+    "logName": "projects/hugs-headshop-20251108122937/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-11-17T15:34:37.473235881Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "hugs-backend-prod",
+        "location": "europe-west3",
+        "project_id": "hugs-headshop-20251108122937",
+        "revision_name": "hugs-backend-prod-00015-rfd",
+        "service_name": "hugs-backend-prod"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "    at require (node:internal/modules/helpers:182:18)",
+    "timestamp": "2025-11-17T15:34:37.469242Z"
+  },
+  {
+    "insertId": "691b408d000728f526f5d398",
+    "labels": {
+      "instanceId": "0014778296f6b9d31168e66d1f71ad44e4398bda9209336b635fed811d744fe823e90432d88bfe52dc9e05a5e13f9d19c23680f32c67b4522ed30cc8c1d5b4554aa2ea43eb4fb87976014b012aaa4a5ee81442b233880a"
+    },
+    "logName": "projects/hugs-headshop-20251108122937/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-11-17T15:34:37.473235881Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "hugs-backend-prod",
+        "location": "europe-west3",
+        "project_id": "hugs-headshop-20251108122937",
+        "revision_name": "hugs-backend-prod-00015-rfd",
+        "service_name": "hugs-backend-prod"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "    at Module.require (node:internal/modules/cjs/loader:1289:19)",
+    "timestamp": "2025-11-17T15:34:37.469237Z"
+  },
+  {
+    "insertId": "691b408d000728ef42af6fee",
+    "labels": {
+      "instanceId": "0014778296f6b9d31168e66d1f71ad44e4398bda9209336b635fed811d744fe823e90432d88bfe52dc9e05a5e13f9d19c23680f32c67b4522ed30cc8c1d5b4554aa2ea43eb4fb87976014b012aaa4a5ee81442b233880a"
+    },
+    "logName": "projects/hugs-headshop-20251108122937/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-11-17T15:34:37.473235881Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "hugs-backend-prod",
+        "location": "europe-west3",
+        "project_id": "hugs-headshop-20251108122937",
+        "revision_name": "hugs-backend-prod-00015-rfd",
+        "service_name": "hugs-backend-prod"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "    at Module._load (node:internal/modules/cjs/loader:1038:27)",
+    "timestamp": "2025-11-17T15:34:37.469231Z"
+  },
+  {
+    "insertId": "691b408d000728e964383522",
+    "labels": {
+      "instanceId": "0014778296f6b9d31168e66d1f71ad44e4398bda9209336b635fed811d744fe823e90432d88bfe52dc9e05a5e13f9d19c23680f32c67b4522ed30cc8c1d5b4554aa2ea43eb4fb87976014b012aaa4a5ee81442b233880a"
+    },
+    "logName": "projects/hugs-headshop-20251108122937/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-11-17T15:34:37.473235881Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "hugs-backend-prod",
+        "location": "europe-west3",
+        "project_id": "hugs-headshop-20251108122937",
+        "revision_name": "hugs-backend-prod-00015-rfd",
+        "service_name": "hugs-backend-prod"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)",
+    "timestamp": "2025-11-17T15:34:37.469225Z"
+  },
+  {
+    "insertId": "691b408d000728e444c12fd4",
+    "labels": {
+      "instanceId": "0014778296f6b9d31168e66d1f71ad44e4398bda9209336b635fed811d744fe823e90432d88bfe52dc9e05a5e13f9d19c23680f32c67b4522ed30cc8c1d5b4554aa2ea43eb4fb87976014b012aaa4a5ee81442b233880a"
+    },
+    "logName": "projects/hugs-headshop-20251108122937/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-11-17T15:34:37.473235881Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "hugs-backend-prod",
+        "location": "europe-west3",
+        "project_id": "hugs-headshop-20251108122937",
+        "revision_name": "hugs-backend-prod-00015-rfd",
+        "service_name": "hugs-backend-prod"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "- /app/dist/index.js",
+    "timestamp": "2025-11-17T15:34:37.469220Z"
+  },
+  {
+    "insertId": "691b408d000728de6e9aa909",
+    "labels": {
+      "instanceId": "0014778296f6b9d31168e66d1f71ad44e4398bda9209336b635fed811d744fe823e90432d88bfe52dc9e05a5e13f9d19c23680f32c67b4522ed30cc8c1d5b4554aa2ea43eb4fb87976014b012aaa4a5ee81442b233880a"
+    },
+    "logName": "projects/hugs-headshop-20251108122937/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-11-17T15:34:37.473235881Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "hugs-backend-prod",
+        "location": "europe-west3",
+        "project_id": "hugs-headshop-20251108122937",
+        "revision_name": "hugs-backend-prod-00015-rfd",
+        "service_name": "hugs-backend-prod"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "- /app/dist/routes/auth.js",
+    "timestamp": "2025-11-17T15:34:37.469214Z"
+  },
+  {
+    "insertId": "691b408d000728d81913949e",
+    "labels": {
+      "instanceId": "0014778296f6b9d31168e66d1f71ad44e4398bda9209336b635fed811d744fe823e90432d88bfe52dc9e05a5e13f9d19c23680f32c67b4522ed30cc8c1d5b4554aa2ea43eb4fb87976014b012aaa4a5ee81442b233880a"
+    },
+    "logName": "projects/hugs-headshop-20251108122937/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-11-17T15:34:37.473235881Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "hugs-backend-prod",
+        "location": "europe-west3",
+        "project_id": "hugs-headshop-20251108122937",
+        "revision_name": "hugs-backend-prod-00015-rfd",
+        "service_name": "hugs-backend-prod"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "Require stack:",
+    "timestamp": "2025-11-17T15:34:37.469208Z"
+  },
+  {
+    "insertId": "691b408d000728d31a407086",
+    "labels": {
+      "instanceId": "0014778296f6b9d31168e66d1f71ad44e4398bda9209336b635fed811d744fe823e90432d88bfe52dc9e05a5e13f9d19c23680f32c67b4522ed30cc8c1d5b4554aa2ea43eb4fb87976014b012aaa4a5ee81442b233880a"
+    },
+    "logName": "projects/hugs-headshop-20251108122937/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-11-17T15:34:37.473235881Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "hugs-backend-prod",
+        "location": "europe-west3",
+        "project_id": "hugs-headshop-20251108122937",
+        "revision_name": "hugs-backend-prod-00015-rfd",
+        "service_name": "hugs-backend-prod"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "Error: Cannot find module 'bcrypt'",
+    "timestamp": "2025-11-17T15:34:37.469203Z"
+  },
+  {
+    "insertId": "691b408d000728b5c380b0a7",
+    "labels": {
+      "instanceId": "0014778296f6b9d31168e66d1f71ad44e4398bda9209336b635fed811d744fe823e90432d88bfe52dc9e05a5e13f9d19c23680f32c67b4522ed30cc8c1d5b4554aa2ea43eb4fb87976014b012aaa4a5ee81442b233880a"
+    },
+    "logName": "projects/hugs-headshop-20251108122937/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-11-17T15:34:37.473235881Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "hugs-backend-prod",
+        "location": "europe-west3",
+        "project_id": "hugs-headshop-20251108122937",
+        "revision_name": "hugs-backend-prod-00015-rfd",
+        "service_name": "hugs-backend-prod"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "  ^",
+    "timestamp": "2025-11-17T15:34:37.469173Z"
+  },
+  {
+    "insertId": "691b408d000728af6fcb20e9",
+    "labels": {
+      "instanceId": "0014778296f6b9d31168e66d1f71ad44e4398bda9209336b635fed811d744fe823e90432d88bfe52dc9e05a5e13f9d19c23680f32c67b4522ed30cc8c1d5b4554aa2ea43eb4fb87976014b012aaa4a5ee81442b233880a"
+    },
+    "logName": "projects/hugs-headshop-20251108122937/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-11-17T15:34:37.473235881Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "hugs-backend-prod",
+        "location": "europe-west3",
+        "project_id": "hugs-headshop-20251108122937",
+        "revision_name": "hugs-backend-prod-00015-rfd",
+        "service_name": "hugs-backend-prod"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "  throw err;",
+    "timestamp": "2025-11-17T15:34:37.469167Z"
+  },
+  {
+    "insertId": "691b408d000728951252983d",
+    "labels": {
+      "instanceId": "0014778296f6b9d31168e66d1f71ad44e4398bda9209336b635fed811d744fe823e90432d88bfe52dc9e05a5e13f9d19c23680f32c67b4522ed30cc8c1d5b4554aa2ea43eb4fb87976014b012aaa4a5ee81442b233880a"
+    },
+    "logName": "projects/hugs-headshop-20251108122937/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-11-17T15:34:37.473235881Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "hugs-backend-prod",
+        "location": "europe-west3",
+        "project_id": "hugs-headshop-20251108122937",
+        "revision_name": "hugs-backend-prod-00015-rfd",
+        "service_name": "hugs-backend-prod"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "node:internal/modules/cjs/loader:1210",
+    "timestamp": "2025-11-17T15:34:37.469141Z"
+  },
+  {
+    "insertId": "691b408b0005ce7747580a34",
+    "labels": {
+      "instanceId": "0014778296f6b9d31168e66d1f71ad44e4398bda9209336b635fed811d744fe823e90432d88bfe52dc9e05a5e13f9d19c23680f32c67b4522ed30cc8c1d5b4554aa2ea43eb4fb87976014b012aaa4a5ee81442b233880a",
+      "scaling_reason": "DEPLOYMENT_ROLLOUT"
+    },
+    "logName": "projects/hugs-headshop-20251108122937/logs/run.googleapis.com%2Fvarlog%2Fsystem",
+    "receiveTimestamp": "2025-11-17T15:34:35.384014156Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "hugs-backend-prod",
+        "location": "europe-west3",
+        "project_id": "hugs-headshop-20251108122937",
+        "revision_name": "hugs-backend-prod-00015-rfd",
+        "service_name": "hugs-backend-prod"
+      },
+      "type": "cloud_run_revision"
+    },
+    "severity": "INFO",
+    "textPayload": "Starting new instance. Reason: DEPLOYMENT_ROLLOUT - Instance started due to traffic shifting between revisions due to deployment, traffic split adjustment, or deployment health check.",
+    "timestamp": "2025-11-17T15:34:35.380535Z"
+  }
+]

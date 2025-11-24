@@ -13,6 +13,7 @@ ci/run_local_dev.sh
 
 # Frontend: http://localhost:3000
 # Backend health: http://localhost:4000/api/healthz
+# Frontend health: http://localhost:3000/health
 # Mailcatcher UI: http://localhost:1080
 ```
 
@@ -107,8 +108,8 @@ gcloud builds submit \
 # Backend health
 curl https://hugs-backend-prod-787273457651.europe-west3.run.app/api/healthz
 
-# Frontend reachability (temporärer Healthcheck, `/healthz` folgt)
-curl -I https://hugs-frontend-prod-787273457651.europe-west3.run.app/
+# Frontend health
+curl -svf https://hugs-frontend-prod-787273457651.europe-west3.run.app/health
 
 # Smoke tests (uses deployed URLs)
 BACKEND_URL=https://hugs-backend-prod-787273457651.europe-west3.run.app \
@@ -120,7 +121,7 @@ Update the placeholder frontend URL once Cloud Run returns the live endpoint (`g
 
 ### Post-Deploy
 
-- Backend-/Frontend-Healthchecks (siehe oben; Frontend aktuell via `HEAD /`, `/healthz` als Follow-up)
+- Backend-/Frontend-Healthchecks (siehe oben; Frontend via `GET /health`)
 - Prisma-Migrationen: siehe `infra/prisma-deploy.md`
 - **E2E-Smoketests (PROD):** siehe `ops/release-checklist.md` („E2E Smoke – Playwright (PROD)“)
   - Letzter grüner Run: 2025-11-17, Artefakte `.deploy-info-1763380384/`
